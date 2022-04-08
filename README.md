@@ -1,2 +1,3 @@
 # greenhub-mobile-client
-Mobile client Web App for Greenhub
+
+Mobile client Web Application for Greenhub
