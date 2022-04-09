@@ -1,3 +1,3 @@
 # greenhub-mobile-client
 
-Mobile client Web Application for Greenhub
+Mobile client Web Application (PWA) for Greenhub
