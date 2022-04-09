@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Greenhub</title>
     <link rel="stylesheet" href="css/mystyles.css" />
     <link rel="stylesheet" href="main.css" />
@@ -33,21 +30,20 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKyQWZ6hsQ6xyIMZGsriZgoZlGTU1RgTQ&callback=initMap"></script>
   </head>
 
   <body>
     <div id="root"></div>
     <script>
-      // Check that service workers are supported
+            // Check that service workers are supported
       if ("serviceWorker" in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/service-worker.js");
-        });
+              // Use the window load event to keep the page load performant
+              window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+              });
+            
       }
     </script>
-
     <script src="main.js" type="module"></script>
   </body>
 </html>

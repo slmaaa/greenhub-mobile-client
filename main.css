@@ -71,3 +71,14 @@ hr.solid {
 .home-body {
     height: 75vh;
 }
+
+.map-size{
+    height: 100vh;
+    width: 100vw;
+}
+
+.search-bar {
+    position: fixed;
+    height: fit-content;
+    z-index: 1;
+}
