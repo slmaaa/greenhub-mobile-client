@@ -22,7 +22,7 @@
 
 .nav-button {
     height: fit-content;
-    width: 20vw;
+    width: 27.5vw;
 }
 
 .no-radius {
@@ -72,7 +72,7 @@ hr.solid {
     height: 75vh;
 }
 
-.map-size{
+.map-size {
     height: 100vh;
     width: 100vw;
 }
@@ -81,4 +81,18 @@ hr.solid {
     position: fixed;
     height: fit-content;
     z-index: 1;
+}
+
+.qr-button {
+    position: absolute;
+    bottom: 2vh;
+    height: 7.5vh;
+    width: 7.5vh;
+    right: 0;
+    z-index: 3;
+}
+
+.disable {
+    visibility: hidden;
+    pointer-events: none;
 }

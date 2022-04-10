@@ -14,8 +14,8 @@ var googleMapSrc =
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyC3vtiKXk5oOqyFRxIGiWd41XMe5gAKbUE";
 
 const Search = ({ setCurrentPage, currentPage }) => {
-    const [inputDestination, setInputDestination] = useState("");
-    const [isInputDestinationFocused, setIsInputDestinationFocused] =
+    const [searchInput, setSearchInput] = useState("");
+    const [isInputSearchFocused, setIsInputSearchFocused] =
     useState(false);
     const [dropdownItems, setDropdownItems] = useState([]);
 
@@ -41,6 +41,7 @@ const Search = ({ setCurrentPage, currentPage }) => {
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,
+            zoomControl: false,
         });
         // The marker, positioned at Uluru
 
@@ -75,48 +76,45 @@ const Search = ({ setCurrentPage, currentPage }) => {
 
     useEffect(() => {
         loadScript(googleMapSrc, initMap);
+        fetch("https://greenhub.slmaaa.work/backend/r_db/all").then(
+            (response) => { console.log(response) }
+        )
     }, []);
+
+
 
     return html `
     <div
       id="search-bar"
-      class="field my-5 mx-3 is-overlay search-bar has-addons-centered is-flex is-align-items-center is-justify-content-center"
+      class="field my-5 mx-4 is-overlay search-bar has-addons-centered is-flex is-align-items-center is-justify-content-center"
     >
-      <div
-        class="dropdown ${inputDestination.length <= 1 ||
-        !isInputDestinationFocused
-          ? ""
-          : ""}"
-      >
-        <div class="dropdown-trigger">
-          <div class="field">
-            <p class="control has-icons-right">
-              <input
-                class="input is-medium is-rounded has-background-primary-light is-expanded "
-                type="text"
-                id="search-input"
-                onfocus=${(e) => {
-                  setIsInputDestinationFocused(true);
-                }}
-                oninput=${(e) => {
-                  setInputDestination(e.target.value);
-                }}
-              />
-              <span class="icon is-small is-right is-white"
-                ><i class="fas fa-search"></i
-              ></span>
-            </p>
-          </div>
-        </div>
-        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-          <div class="dropdown-content d-property p-1 is-primary">
-            ${dropdownItems}
-          </div>
+      <div class="field">
+        <p class="control has-icons-right">
+          <input
+            class="input is-medium is-rounded is-expanded "
+            type="text"
+            id="search-input"
+            onblur=${() => setIsInputSearchFocused(false)}
+            onfocus=${(e) => {
+              setIsInputSearchFocused(true);
+            }}
+            oninput=${(e) => {
+              setSearchInput(e.target.value);
+            }}
+          />
+          <span class="icon is-small is-right is-white"
+            ><i class="fas fa-search"></i
+          ></span>
+        </p>
+      </div>
+      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content d-property p-1 is-primary">
+          ${dropdownItems}
         </div>
       </div>
     </div>
     <div class="hero is-flex is-flex-direction-column full-height">
-      <div id="map" class="map-size"></div>
+      <div id="map" class="map-size ${isInputSearchFocused?"disable":""}"></div>
       <${NavBar} setCurrentPage=${setCurrentPage} currentPage=${currentPage} />
     </div>
   `;
