@@ -10,6 +10,8 @@ import {
 
 import NavBar from "./navigation_bar.js";
 
+import { getData, postData } from "./fetch.js";
+
 var googleMapSrc =
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyC3vtiKXk5oOqyFRxIGiWd41XMe5gAKbUE";
 
@@ -76,9 +78,7 @@ const Search = ({ setCurrentPage, currentPage }) => {
 
     useEffect(() => {
         loadScript(googleMapSrc, initMap);
-        fetch("https://greenhub.slmaaa.work/backend/r_db/all").then(
-            (response) => { console.log(response) }
-        )
+        getData("https://greenhub.slmaaa.work/backend/r_db/all?format=json").then(data => { console.log(data) })
     }, []);
 
 
