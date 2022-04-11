@@ -14,6 +14,9 @@ import Home from "./home.js";
 import Search from "./search.js";
 import Borrow from "./borrow.js";
 
+import WebSocket from 'https://cdn.skypack.dev/isomorphic-ws';
+
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 
 import {
@@ -39,7 +42,7 @@ const Main = () => {
     const user = useRef(null);
     const [currentPage, setCurrentPage] = useState("HOME");
     const [isLoading, setIsLoading] = useState(true);
-
+    const ws = useRef(null);
     const _URL = new URL(document.location);
     const _GET = _URL.searchParams;
     const URL_TARGET = _GET.get("id");
@@ -71,6 +74,16 @@ const Main = () => {
                 setIsLoading(false);
             });
     }, []);
+
+    useEffect(() => {
+        ws.current = new WebSocket('wss://greenhub.slmaaa.work/ws/user_db/qr');
+        ws.current.onopen = () => {
+            console.log('opened');
+        }
+        ws.current.onclose = () => {
+            console.log('closed')
+        }
+    }, [])
 
     useEffect(() => {
         console.log(currentPage);
