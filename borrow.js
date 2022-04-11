@@ -8,6 +8,7 @@ import {
     useRef,
 } from "https://cdn.skypack.dev/preact/hooks";
 import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
+import WebSocket from 'https://cdn.skypack.dev/isomorphic-ws';
 import QRCode from 'https://cdn.skypack.dev/qrcode';
 
 
@@ -16,6 +17,21 @@ import NavBar from "./navigation_bar.js";
 export const Borrow = ({ setCurrentPage, user, currentPage }) => {
     const [borrowID, setBorrowID] = useState(null);
     const [isLoadingCode, setIsLoadingCode] = useState(true);
+    const ws = useRef(null);
+
+
+    useEffect(() => {
+        ws.current = new WebSocket('wss://greenhub.slmaaa.work/ws/user_db/qr');
+        ws.current.onopen = () => {
+            console.log('opened');
+            console.log('Sending Borrow request');
+        }
+        ws.current.Borrow
+        ws.current.onclose = () => {
+            console.log('closed')
+        }
+    }, [])
+
     useEffect(() => {
         setBorrowID(uuidv4());
         const canvas = document.getElementById("qr-code");
