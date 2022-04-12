@@ -1,6 +1,5 @@
 .full-height {
-    min-height: 100vh;
-    max-height: 100vh;
+    height: 100vh;
 }
 
 .one-fourth-height {
@@ -97,10 +96,11 @@ hr.solid {
     pointer-events: none;
 }
 
-#loading-circle {
-    margin: 20px;
-    width: 10vh;
-    height: 10vh;
-    align-self: center;
-    justify-self: center;
+#stats-div {
+    height: 40vh;
+}
+
+.admin-button {
+    width: 40vw;
+    height: 30vh;
 }

@@ -15,7 +15,7 @@ import QRCode from 'https://cdn.skypack.dev/qrcode';
 import NavBar from "./navigation_bar.js";
 
 export const QR_Code = ({ setCurrentPage, currentPage, userID }) => {
-        const [qrID, setQRID] = useState(null);
+        const [pid, setPid] = useState(null);
         const [isLoadingCode, setIsLoadingCode] = useState(true);
         const [balance, setBalance] = useState(0);
         const ws = useRef(null);
@@ -35,7 +35,8 @@ export const QR_Code = ({ setCurrentPage, currentPage, userID }) => {
                 console.log(data);
                 const json = JSON.parse(data.data);
                 console.log(json);
-                setQRID(json.qr_id);
+                if (json.response_type == 'RECEIVED')
+                    setPid(json.pid);
                 setIsLoadingCode(false);
             }
 
@@ -47,7 +48,7 @@ export const QR_Code = ({ setCurrentPage, currentPage, userID }) => {
         useEffect(() => {
             if (isLoadingCode) return;
             const canvas = document.getElementById("qr-code");
-            QRCode.toCanvas(canvas, qrID, { "width": window.innerWidth * 0.8, "color": { "light": "#0000" } }, function(error) {
+            QRCode.toCanvas(canvas, pid, { "width": window.innerWidth * 0.8, "color": { "light": "#0000" } }, function(error) {
                 if (error) console.error(error)
                 console.log('success!');
             })

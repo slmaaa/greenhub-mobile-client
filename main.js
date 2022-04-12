@@ -9,7 +9,6 @@ import {
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 
-import Store from 'https://cdn.skypack.dev/socrates';
 
 import Login from "./login.js";
 import Home from "./home.js";
