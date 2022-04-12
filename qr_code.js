@@ -26,6 +26,7 @@ export const QR_Code = ({ setCurrentPage, currentPage, userID }) => {
             ws.current.onopen = () => {
                 console.log('opened');
                 console.log('Sending user request');
+                const request = {}
                 request.user_id = userID.current;
                 ws.current.send(JSON.stringify(request));
             }
@@ -69,7 +70,7 @@ export const QR_Code = ({ setCurrentPage, currentPage, userID }) => {
             </div>
             <div class="box m-5 is-flex is-justify-content-center has-background-primary-light">
                 ${isLoadingCode ? html`<progress class="progress is-small is-primary" max="100">15%</progress>` :
-                html`<canvas id="qr-code" class="i"></canvas>`}
+            html`<canvas id="qr-code" class="i"></canvas>`}
     
             </div>
         </div>
