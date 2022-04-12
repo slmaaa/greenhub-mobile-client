@@ -9,10 +9,12 @@ import {
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 
+import Store from 'https://cdn.skypack.dev/socrates';
+
 import Login from "./login.js";
 import Home from "./home.js";
 import Search from "./search.js";
-import Borrow from "./borrow.js";
+import QR_Code from "./qr_code.js";
 
 
 
@@ -35,12 +37,17 @@ const firebaseConfig = {
     appId: "1:889263093307:web:62b77b2338b5a7eb28ce1e",
 };
 
+
 const Main = () => {
     //useStates for routing
     const app = useRef(initializeApp(firebaseConfig));
     const user = useRef(null);
     const [currentPage, setCurrentPage] = useState("HOME");
     const [isLoading, setIsLoading] = useState(true);
+
+    const userId = useRef("17845878-35c3-4ef6-b9b7-8ccbd26a08c2")
+
+
     const _URL = new URL(document.location);
     const _GET = _URL.searchParams;
     const URL_TARGET = _GET.get("id");
@@ -92,8 +99,8 @@ const Main = () => {
         case "SEARCH":
             scene = html `<${Search} setCurrentPage=${setCurrentPage} currentPage=${currentPage} />`;
             break;
-        case "BORROW":
-            scene = html `<${Borrow} setCurrentPage=${setCurrentPage} currentPage=${currentPage} />`;
+        case "QR_CODE":
+            scene = html `<${QR_Code} setCurrentPage=${setCurrentPage} currentPage=${currentPage} userId=${userId} />`;
             break;
     }
     return scene;

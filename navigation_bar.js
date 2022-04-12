@@ -54,10 +54,10 @@ export const NavBar = ({ setCurrentPage, currentPage }) => {
   </div>
   <button class="qr-button button mr-2 is-rounded is-warning is-flex is-flex-direction-column is-align-items-center"
   onclick=${()=>{
-    if (currentPage==="BORROW") return;
-    setCurrentPage("BORROW")}}>
+    if (currentPage==="QR_CODE") return;
+    setCurrentPage("QR_CODE")}}>
         <span class="m-0 icon is-large">
-          <i class="fa-solid fa-inbox fa-lg"></i>
+          <i class="fa-solid fa-qrcode fa-lg"></i>
         </span>
         <p class="is-size-7">Borrow</p>
   </button>

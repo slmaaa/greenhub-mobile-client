@@ -96,3 +96,11 @@ hr.solid {
     visibility: hidden;
     pointer-events: none;
 }
+
+#loading-circle {
+    margin: 20px;
+    width: 10vh;
+    height: 10vh;
+    align-self: center;
+    justify-self: center;
+}

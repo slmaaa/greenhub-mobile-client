@@ -103,8 +103,9 @@ const Search = ({ setCurrentPage, currentPage }) => {
             }}
           />
           <span class="icon is-small is-right is-white"
-            ><i class="fas fa-search"></i
-          ></span>
+            ><i class="fas fa-search">
+              </i>
+            </span>
         </p>
       </div>
       <div class="dropdown-menu" id="dropdown-menu" role="menu">
