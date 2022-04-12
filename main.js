@@ -45,7 +45,7 @@ const Main = () => {
     const [currentPage, setCurrentPage] = useState("HOME");
     const [isLoading, setIsLoading] = useState(true);
 
-    const userId = useRef("17845878-35c3-4ef6-b9b7-8ccbd26a08c2")
+    const userID = useRef("17845878-35c3-4ef6-b9b7-8ccbd26a08c2")
 
 
     const _URL = new URL(document.location);
@@ -100,7 +100,7 @@ const Main = () => {
             scene = html `<${Search} setCurrentPage=${setCurrentPage} currentPage=${currentPage} />`;
             break;
         case "QR_CODE":
-            scene = html `<${QR_Code} setCurrentPage=${setCurrentPage} currentPage=${currentPage} userId=${userId} />`;
+            scene = html `<${QR_Code} setCurrentPage=${setCurrentPage} currentPage=${currentPage} userID=${userID} />`;
             break;
     }
     return scene;
