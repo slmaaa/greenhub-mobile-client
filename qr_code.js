@@ -35,9 +35,10 @@ export const QR_Code = ({ setCurrentPage, currentPage, userID }) => {
                 console.log(data);
                 const json = JSON.parse(data.data);
                 console.log(json);
-                if (json.response_type == 'RECEIVED')
+                if (json.response_type == 'RECEIVED') {
                     setPid(json.pid);
-                setIsLoadingCode(false);
+                    setIsLoadingCode(false);
+                }
             }
 
             ws.current.onclose = () => {
@@ -71,7 +72,7 @@ export const QR_Code = ({ setCurrentPage, currentPage, userID }) => {
             </div>
             <div class="box m-5 is-flex is-justify-content-center has-background-primary-light">
                 ${isLoadingCode ? html`<progress class="progress is-small is-primary" max="100">15%</progress>` :
-                html`<canvas id="qr-code" class="i"></canvas>`}
+            html`<canvas id="qr-code" class="i"></canvas>`}
     
             </div>
         </div>
