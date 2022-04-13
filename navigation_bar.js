@@ -43,12 +43,17 @@ export const NavBar = ({ setCurrentPage, currentPage }) => {
           <p class="is-size-7">Search</p>
         </div>
       </button>
-      <button class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("RECORD")}">
+      <button
+        class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("REWARD")}"
+        onclick=${() => {
+          setCurrentPage("REWARD");
+        }}
+      >
         <div class="is-flex is-flex-direction-column is-align-items-center">
           <span class="m-0 icon is-large">
-            <i class="fas fa-file-invoice fa-lg"></i>
+            <i class="fas fa-gift fa-lg"></i>
           </span>
-          <p class="is-size-7">Record</p>
+          <p class="is-size-7">Reward</p>
         </div>
       </button>
       <div

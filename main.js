@@ -13,6 +13,7 @@ import Login from "./login.js";
 import Home from "./home.js";
 import Search from "./search.js";
 import QR_Code from "./qr_code.js";
+import Reward from "./reward.js";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 
@@ -115,6 +116,16 @@ const Main = () => {
         setGCash=${setGCash}
       />`;
             break;
+        case "REWARD":
+            scene = html `<${Reward}
+        setCurrentPage=${setCurrentPage}
+        currentPage=${currentPage}
+        userID=${userID}
+        balance=${balance}
+        setBalance=${setBalance}
+        GCash=${GCash}
+        setGCash=${setGCash}
+      />`;
     }
     return scene;
 };
