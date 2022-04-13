@@ -9,13 +9,10 @@ import {
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 
-
 import Login from "./login.js";
 import Home from "./home.js";
 import Search from "./search.js";
 import QR_Code from "./qr_code.js";
-
-
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 
@@ -36,7 +33,6 @@ const firebaseConfig = {
     appId: "1:889263093307:web:62b77b2338b5a7eb28ce1e",
 };
 
-
 const Main = () => {
     //useStates for routing
     const app = useRef(initializeApp(firebaseConfig));
@@ -44,8 +40,7 @@ const Main = () => {
     const [currentPage, setCurrentPage] = useState("HOME");
     const [isLoading, setIsLoading] = useState(true);
 
-    const userID = useRef("17845878-35c3-4ef6-b9b7-8ccbd26a08c2")
-
+    const userID = useRef("17845878-35c3-4ef6-b9b7-8ccbd26a08c2");
 
     const _URL = new URL(document.location);
     const _GET = _URL.searchParams;
@@ -79,7 +74,6 @@ const Main = () => {
             });
     }, []);
 
-
     useEffect(() => {
         console.log(currentPage);
     }, [currentPage]);
@@ -93,13 +87,24 @@ const Main = () => {
             scene = html `<${Login} setCurrentPage=${setCurrentPage} app=${app} />`;
             break;
         case "HOME":
-            scene = html `<${Home} setCurrentPage=${setCurrentPage} user=${user} currentPage=${currentPage} />`;
+            scene = html `<${Home}
+        setCurrentPage=${setCurrentPage}
+        user=${user}
+        currentPage=${currentPage}
+      />`;
             break;
         case "SEARCH":
-            scene = html `<${Search} setCurrentPage=${setCurrentPage} currentPage=${currentPage} />`;
+            scene = html `<${Search}
+        setCurrentPage=${setCurrentPage}
+        currentPage=${currentPage}
+      />`;
             break;
         case "QR_CODE":
-            scene = html `<${QR_Code} setCurrentPage=${setCurrentPage} currentPage=${currentPage} userID=${userID} />`;
+            scene = html `<${QR_Code}
+        setCurrentPage=${setCurrentPage}
+        currentPage=${currentPage}
+        userID=${userID}
+      />`;
             break;
     }
     return scene;

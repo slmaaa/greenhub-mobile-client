@@ -12,26 +12,45 @@ import NavBar from "./navigation_bar.js";
 
 import { getData, postData } from "./fetch.js";
 
-var googleMapSrc =
+const googleMapSrc =
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyC3vtiKXk5oOqyFRxIGiWd41XMe5gAKbUE";
+
+const SEARCH_RADIUS = "1000";
+
+const RESTAURANT_REST_URL = "https://greenhub.slmaaa.work/backend/restaurant/";
 
 const Search = ({ setCurrentPage, currentPage }) => {
     const [searchInput, setSearchInput] = useState("");
-    const [isInputSearchFocused, setIsInputSearchFocused] =
-    useState(false);
+    const [isInputSearchFocused, setIsInputSearchFocused] = useState(false);
     const [dropdownItems, setDropdownItems] = useState([]);
 
-    function loadScript(sScriptSrc, loadedCallback) {
+    const loadScript = (sScriptSrc, loadedCallback) => {
         var oHead = document.getElementsByTagName("HEAD")[0];
         var oScript = document.createElement("script");
         oScript.type = "text/javascript";
         oScript.src = sScriptSrc;
         oHead.appendChild(oScript);
         oScript.onload = loadedCallback;
-    }
+    };
+
+    const getNearbyRestaurants = async(lat, lng) => {
+        getData(
+                RESTAURANT_REST_URL +
+                "?" +
+                new URLSearchParams({
+                    lat: lat,
+                    lng: lng,
+                    dst: SEARCH_RADIUS,
+                })
+            )
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => {});
+    };
 
     // Initialize and add the map
-    function initMap() {
+    const initMap = () => {
         // The location of Uluru
         const hong_kong = { lat: 22.3526632, lng: 113.8475072 };
         // The map, centered at Uluru
@@ -54,6 +73,7 @@ const Search = ({ setCurrentPage, currentPage }) => {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
+                    pos = { lat: 22.3127038, lng: 114.1762896 }; // Override for testing
                     map.setCenter(pos);
                 },
                 () => {
@@ -64,7 +84,7 @@ const Search = ({ setCurrentPage, currentPage }) => {
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
-    }
+    };
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -78,10 +98,12 @@ const Search = ({ setCurrentPage, currentPage }) => {
 
     useEffect(() => {
         loadScript(googleMapSrc, initMap);
-        getData("https://greenhub.slmaaa.work/backend/r_db/all?format=json").then(data => { console.log(data) })
+        getData("https://greenhub.slmaaa.work/backend/r_db/all?format=json").then(
+            (data) => {
+                console.log(data);
+            }
+        );
     }, []);
-
-
 
     return html `
     <div
@@ -103,19 +125,16 @@ const Search = ({ setCurrentPage, currentPage }) => {
             }}
           />
           <span class="icon is-small is-right is-white"
-            ><i class="fas fa-search">
-              </i>
-            </span>
+            ><i class="fas fa-search"> </i>
+          </span>
         </p>
-      </div>
-      <div class="dropdown-menu" id="dropdown-menu" role="menu">
-        <div class="dropdown-content d-property p-1 is-primary">
-          ${dropdownItems}
-        </div>
       </div>
     </div>
     <div class="hero is-flex is-flex-direction-column full-height">
-      <div id="map" class="map-size ${isInputSearchFocused?"disable":""}"></div>
+      <div
+        id="map"
+        class="map-size ${isInputSearchFocused ? "disable" : ""}"
+      ></div>
       <${NavBar} setCurrentPage=${setCurrentPage} currentPage=${currentPage} />
     </div>
   `;
