@@ -54,7 +54,7 @@ const Search = ({ setCurrentPage, currentPage }) => {
                 )
                 .then((data) => {
                     console.log(data);
-                    data.map((restaurant) => {
+                    data.results.map((restaurant) => {
                         addRestaurantMarker(restaurant);
                     });
                 })
