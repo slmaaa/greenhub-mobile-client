@@ -45,7 +45,7 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
                 .catch((err) => {
                     console.log(err);
                 });
-        });
+        }, []);
 
         return html `
     <div class="hero is-flex is-flex-direction-column full-height">
