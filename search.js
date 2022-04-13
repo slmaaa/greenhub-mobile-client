@@ -149,10 +149,12 @@ const Search = ({ setCurrentPage, currentPage }) => {
         <div
           class="box has-background-primary-light mx-3 is-flex is-flex-direction-column "
         >
+        <div>
           <button class="button is-rounded is-danger is-small ">
             <span class="icon is-small">
               <i class="fas fa-xmark"></i>
             </span>
+        </div>
           </button>
           <figure class="image restaurant-pic my-3">
             <img src=${clickedRestaurantRef.current.picture} />
