@@ -27,7 +27,7 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
           <img src=${reward.illustration} />
         </figure>
       </div>
-      <div class="is-flex is-flex-grow-1 is-flex-direction-column is-size-5">
+      <div class="is-flex is-flex-direction-column is-size-6">
         ${reward.name}<br />
         Provided by: ${reward.provider}<br />
         <button class="button is-primary is-size-6">
