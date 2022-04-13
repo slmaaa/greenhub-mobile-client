@@ -116,3 +116,24 @@ hr.solid {
 .g-cash-box {
     height: 30vh;
 }
+
+.info-box {
+    width: 80vw;
+}
+
+.overflow-x {
+    overflow-x: scroll;
+}
+
+.overflow-y {
+    overflow-y: scroll;
+    overflow-x: unset;
+}
+
+.info-div {
+    width: 280vw;
+}
+
+.info-box-container {
+    margin-right: 5vw;
+}
