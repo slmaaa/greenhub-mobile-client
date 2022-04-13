@@ -101,7 +101,6 @@ const Search = ({ setCurrentPage, currentPage }) => {
                 fullscreenControl: false,
                 zoomControl: false,
             });
-            // The marker, positioned at Uluru
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(

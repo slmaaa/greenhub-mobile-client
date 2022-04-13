@@ -9,9 +9,7 @@ import {
 } from "https://cdn.skypack.dev/preact/hooks";
 import NavBar from "./navigation_bar.js";
 
-export const Home = ({ setCurrentPage, user, currentPage }) => {
-        const [balance, setBalance] = useState(0);
-        const [GCash, setGCash] = useState(1000);
+export const Home = ({ setCurrentPage, user, currentPage, balance, GCash }) => {
         const [topPercent, setTopPercent] = useState(30);
         const [chartConfig, setChartConfig] = useState(null);
 
@@ -32,7 +30,6 @@ export const Home = ({ setCurrentPage, user, currentPage }) => {
             const config = {
                 type: "doughnut",
                 data: data,
-
             };
             setChartConfig(config);
         }, []);
@@ -48,37 +45,45 @@ export const Home = ({ setCurrentPage, user, currentPage }) => {
 
         const generateTask = (description, reward, finishedCount, totalCount) => {
             return html `<div class="my-4">
-  <span class="is-size-7">> ${description}</span>
-  <div class="is-flex is-justify-content-space-between is-align-items-flex-end">
-    <span class="is-size-7 has-text-primary-dark has-text-weight-bold">${reward.toString()} G-Cash
-    </span>
-    <button class="button is-white is-small is-rounded is-size-7">
-      ${finishedCount.toString()} / ${totalCount.toString()}
-    </button>
-  </div>
-</div>`;
+      <span class="is-size-7">> ${description}</span>
+      <div
+        class="is-flex is-justify-content-space-between is-align-items-flex-end"
+      >
+        <span class="is-size-7 has-text-primary-dark has-text-weight-bold"
+          >${reward.toString()} G-Cash
+        </span>
+        <button class="button is-white is-small is-rounded is-size-7">
+          ${finishedCount.toString()} / ${totalCount.toString()}
+        </button>
+      </div>
+    </div>`;
         };
 
         return html `
     <div class="hero is-flex is-flex-direction-column full-height">
-      <div class="px-5 pt-5 is-flex-grow-1 is-flex is-flex-direction-column is-justify-content-start">
+      <div
+        class="px-5 pt-5 is-flex-grow-1 is-flex is-flex-direction-column is-justify-content-start"
+      >
         <div class="header">
-          <h1 class="title ml-1 is-3 has-text-primary is-primary has-text-weight-bold">
+          <h1
+            class="title ml-1 is-3 has-text-primary is-primary has-text-weight-bold"
+          >
             Greenhub
           </h1>
-    
-          <div class="is-flex is-justify-content-space-between is-align-items-center">
-            <span class="is-size-5 has-text-weight-bold ml-2">Balance: $${balance.toString()}</span>
-            <button class="button is-right is-align-self is-primary is-light is-rounded is-size-6 is-small">
-              Top up
-            </button>
+
+          <div
+            class="is-flex is-justify-content-space-between is-align-items-center"
+          >
+            <span class="is-size-5 has-text-weight-bold ml-2"
+              >Balance: $${balance.toString()}</span
+            >
           </div>
         </div>
-    
+
         <div class="is-overflow home-body">
           <div class="box mt-3 has-background-primary-dark">
-            <span class="has-text-white has-text-weight-bold is-size-5">You are the top ${topPercent.toString()}%
-              ${html`<br />`} user in
+            <span class="has-text-white has-text-weight-bold is-size-5"
+              >You are the top ${topPercent.toString()}% ${html`<br />`} user in
               last 30 days
             </span>
             <br />
@@ -86,24 +91,32 @@ export const Home = ({ setCurrentPage, user, currentPage }) => {
               <canvas id="donut-chart" />
             </div>
           </div>
-    
+
           <div class="box has-background-primary-light">
             <div class="is-flex is-justify-content-space-between">
               <div>
-                <span class="is-size-6 has-text-weight-light">You currently have</span>
+                <span class="is-size-6 has-text-weight-light"
+                  >You currently have</span
+                >
                 <br />
-                <span class="is-size-5 has-text-weight-bold">${GCash.toString()}</span>
+                <span class="is-size-5 has-text-weight-bold"
+                  >${GCash.toString()}</span
+                >
                 <span class="is-size-5 has-text-weight-bold"> G-Cash</span>
               </div>
-              <button class="button is-size-7 is-inverted is-primary is-align-self-flex-end has-text-right">
+              <button
+                class="button is-size-7 is-inverted is-primary is-align-self-flex-end has-text-right"
+              >
                 Check rewards >>
               </button>
             </div>
-    
+
             <hr class="solid" />
-    
+
             <div class="is-flex is-flex-direction-column">
-              <span class="is-size-6 has-text-weight-semibold">G-Cash Tasks:</span>
+              <span class="is-size-6 has-text-weight-semibold"
+                >G-Cash Tasks:</span
+              >
               ${generateTask(
                 "Takeaway with Greenhub 3 days in a row",
                 50,

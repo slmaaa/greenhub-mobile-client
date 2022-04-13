@@ -56,14 +56,14 @@ export const NavBar = ({ setCurrentPage, currentPage }) => {
       ></div>
     </div>
     <button
-      class="qr-button button mr-2 is-rounded is-warning is-flex is-flex-direction-column is-align-items-center"
+      class="qr-button button mr-2 ml-1 is-rounded is-warning is-flex is-flex-direction-column is-align-items-center"
       onclick=${() => {
         if (currentPage === "QR_CODE") return;
         setCurrentPage("QR_CODE");
       }}
     >
       <span class="m-0 icon is-large">
-        <i class="fa-solid fa-qrcode fa-lg"></i>
+        <i class="fa-solid fa-qrcode fa-2x"></i>
       </span>
     </button>
   `;

@@ -108,3 +108,11 @@ hr.solid {
     height: 3vh;
     width: 3vh;
 }
+
+.qr-code-box {
+    height: 45vh;
+}
+
+.g-cash-box {
+    height: 30vh;
+}

@@ -40,7 +40,10 @@ const Main = () => {
     const [currentPage, setCurrentPage] = useState("HOME");
     const [isLoading, setIsLoading] = useState(true);
 
+    //DUMMY VALUES FOR TESTING
     const userID = useRef("17845878-35c3-4ef6-b9b7-8ccbd26a08c2");
+    const [balance, setBalance] = useState(0);
+    const [GCash, setGCash] = useState(1000);
 
     const _URL = new URL(document.location);
     const _GET = _URL.searchParams;
@@ -91,6 +94,8 @@ const Main = () => {
         setCurrentPage=${setCurrentPage}
         user=${user}
         currentPage=${currentPage}
+        balance=${balance}
+        GCash=${GCash}
       />`;
             break;
         case "SEARCH":
@@ -104,6 +109,10 @@ const Main = () => {
         setCurrentPage=${setCurrentPage}
         currentPage=${currentPage}
         userID=${userID}
+        balance=${balance}
+        setBalance=${setBalance}
+        GCash=${GCash}
+        setGCash=${setGCash}
       />`;
             break;
     }
