@@ -82,10 +82,10 @@ const Search = ({ setCurrentPage, currentPage }) => {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         /*const pos = {
-                                                                      lat: position.coords.latitude,
-                                                                      lng: position.coords.longitude,
-                                                                  };*/
-                        pos = { lat: 22.3127038, lng: 114.1762896 }; // Override for testing
+                                                                                    lat: position.coords.latitude,
+                                                                                    lng: position.coords.longitude,
+                                                                                };*/
+                        const pos = { lat: 22.3127038, lng: 114.1762896 }; // Override for testing
                         mapRef.current.setCenter(pos);
                     },
                     () => {
