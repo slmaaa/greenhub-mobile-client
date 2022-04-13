@@ -23,7 +23,7 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
       class="box mb-3 has-background-primary-light is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between"
     >
       <div class="illustration">
-        <figure class="image is-64x64s>
+        <figure class="image is-64x64">
           <img src=${reward.illustration} />
         </figure>
       </div>
