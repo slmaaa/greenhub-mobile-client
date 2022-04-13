@@ -170,7 +170,7 @@ const Search = ({ setCurrentPage, currentPage }) => {
             </a>
           </p>
         </div>
-        <button class="modal-close is-large is-danger">
+        <button class="is-large is-danger">
           <span class="icon">
             <i class="fas fa-xmark"></i>
           </span>
