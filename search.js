@@ -24,20 +24,21 @@ const Search = ({ setCurrentPage, currentPage }) => {
         const [isInputSearchFocused, setIsInputSearchFocused] = useState(false);
         const [dropdownItems, setDropdownItems] = useState([]);
         const dummyRestaurant = {
-            url: "https://greenhub.slmaaa.work/backend/restaurant/270e95dd-e9e5-439b-bc92-f1864c84b3ab/",
-            name: "Shun Kee",
-            region: "KLN",
-            district: "YT",
-            address: null,
-            cuisine: "cha chang ting",
-            price_range_low: 50,
-            price_range_high: 100,
-            open_rice_url: "https://www.openrice.com/en/hongkong/r-shun-kee-typhoon-shelter-causeway-bay-hong-kong-style-seafood-r50112",
-            lat: 22.31208,
-            lng: 114.16843,
-            point: "SRID=4326;POINT (114.16843 22.31208)",
-            business_hours_from: "10:00:00",
-            business_hours_to: "21:00:00",
+            url: "",
+            name: "",
+            region: "",
+            district: "",
+            address: "",
+            picture: "",
+            cuisine: "",
+            price_range_low: 0,
+            price_range_high: 0,
+            open_rice_url: "",
+            lat: 0,
+            lng: 0,
+            point: "",
+            business_hours_from: "",
+            business_hours_to: "",
         };
         const clickedRestaurantRef = useRef(dummyRestaurant);
         const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -145,7 +146,10 @@ const Search = ({ setCurrentPage, currentPage }) => {
       <div class="modal-background"></div>
       <div class="modal-content">
         <!-- Any other Bulma elements you want -->
-        <div class="box has-background-primary-light">
+        <div class="box has-background-primary-light mx-3">
+          <figure class="image restaurant-pic">
+            <img src=${clickedRestaurantRef.current.picture} />
+          </figure>
           <p class="">
             <span class="is-size-5 has-text-weight-medium"
               >${clickedRestaurantRef.current.name}</span
@@ -165,7 +169,14 @@ const Search = ({ setCurrentPage, currentPage }) => {
               Openrice
             </a>
           </p>
-          <button class="button is-danger is-overlay is-pulled-right">x</button>
+          <button
+            class="button is-danger is-overlay is-pulled-right"
+            onclick=${() => {
+              setIsDetailModalOpen(false);
+            }}
+          >
+            x
+          </button>
         </div>
       </div>
     </div>
