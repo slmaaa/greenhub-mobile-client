@@ -25,10 +25,12 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
       <figure class="image is-128x128">
         <img src=${reward.illustration} />
       </figure>
-      <div class="is-flex is-flex-grow-1 is-size-5">
+      <div class="is-flex is-flex-grow-1 is-flex-direction-column is-size-5">
         ${reward.name}<br />
         Provided by: ${reward.provider}<br />
-        <button class="button">${reward.cost}</button>
+        <button class="button is-primary is-size-6">
+          <span>${reward.cost} G-Cash</span>
+        </button>
       </div>
     </div>`;
         };
