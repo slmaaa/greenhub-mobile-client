@@ -17,7 +17,7 @@ const googleMapSrc =
 
 const SEARCH_RADIUS = "1000";
 
-const RESTAURANT_REST_URL = "https://greenhub.slmaaa.work/backend/restaurant/";
+const RESTAURANT_REST_URL = "https://greenhub.slmaaa.work/backend/restaurant";
 
 const Search = ({ setCurrentPage, currentPage }) => {
         const [searchInput, setSearchInput] = useState("");
