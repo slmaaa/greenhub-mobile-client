@@ -149,8 +149,8 @@ const Search = ({ setCurrentPage, currentPage }) => {
         <div
           class="box has-background-primary-light mx-3 is-flex is-flex-direction-column "
         >
-          <button class="button is-rounded is-danger is-pulled-right">
-            <span class="icon">
+          <button class="button is-rounded is-danger is-small ">
+            <span class="icon is-small">
               <i class="fas fa-xmark"></i>
             </span>
           </button>
