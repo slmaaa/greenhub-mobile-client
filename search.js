@@ -122,7 +122,10 @@ const Search = ({ setCurrentPage, currentPage }) => {
         }, []);
 
         return html `
-    <div id="restaurant-detail-modal" class="modal is-active">
+    <div
+      id="restaurant-detail-modal"
+      class="modal ${isDetailModalOpen ? "is-active" : ""}"
+    >
       <div class="modal-background"></div>
       <div class="modal-content">
         <!-- Any other Bulma elements you want -->
@@ -143,7 +146,7 @@ const Search = ({ setCurrentPage, currentPage }) => {
               Openrice
             </button>
           </p>
-          <button class="button is-delete is-overlay is-pulled-right"></button>
+          <button class="button is-danger is-overlay is-pulled-right">x</button>
         </div>
       </div>
     </div>
