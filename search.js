@@ -154,13 +154,12 @@ const Search = ({ setCurrentPage, currentPage }) => {
             ${clickedRestaurantRef.current.price_range_high}<br />
             Business hour: ${clickedRestaurantRef.current.business_hours_from} -
             ${clickedRestaurantRef.current.business_hours_to}<br />
-            <button
+            <a
               class="button is-warning"
-              onclick="location.href='${clickedRestaurantRef.current
-                .open_rice_url}'"
+              href=${clickedRestaurantRef.current.open_rice_url}
             >
               Openrice
-            </button>
+            </a>
           </p>
           <button class="button is-danger is-overlay is-pulled-right">x</button>
         </div>
