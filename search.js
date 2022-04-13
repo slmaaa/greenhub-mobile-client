@@ -58,7 +58,9 @@ const Search = ({ setCurrentPage, currentPage }) => {
                         addRestaurantMarker(restaurant);
                     });
                 })
-                .catch((err) => {});
+                .catch((err) => {
+                    console.log(err);
+                });
         };
 
         // Initialize and add the map
@@ -81,12 +83,13 @@ const Search = ({ setCurrentPage, currentPage }) => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
-                        /*const pos = {
-                                                                                    lat: position.coords.latitude,
-                                                                                    lng: position.coords.longitude,
-                                                                                };*/
+                        //const pos = {
+                        //   lat: position.coords.latitude,
+                        //   lng: position.coords.longitude,
+                        //};
                         const pos = { lat: 22.3127038, lng: 114.1762896 }; // Override for testing
                         mapRef.current.setCenter(pos);
+                        getNearbyRestaurants(pos.lat, pos.lng);
                     },
                     () => {
                         handleLocationError(true, infoWindow, mapRef.current.getCenter());
