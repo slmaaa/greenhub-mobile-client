@@ -146,8 +146,10 @@ const Search = ({ setCurrentPage, currentPage }) => {
       <div class="modal-content">
         <!-- Any other Bulma elements you want -->
         <div class="box has-background-primary-light">
-          <p class=" has-text-primary">
-            ${clickedRestaurantRef.current.name}<br />
+          <p class="">
+            <span class="is-size-5 has-text-weight-medium"
+              >${clickedRestaurantRef.current.name}</span
+            ><br />
             Cuisine type: ${clickedRestaurantRef.current.cuisine}<br />
             Address: ${clickedRestaurantRef.current.address}<br />
             Price: ${clickedRestaurantRef.current.price_range_low} -
@@ -157,6 +159,8 @@ const Search = ({ setCurrentPage, currentPage }) => {
             <a
               class="button is-warning"
               href=${clickedRestaurantRef.current.open_rice_url}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Openrice
             </a>
