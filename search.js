@@ -169,15 +169,11 @@ const Search = ({ setCurrentPage, currentPage }) => {
               Openrice
             </a>
           </p>
-          <button
-            class="button is-danger is-overlay is-pulled-right"
-            onclick=${() => {
-              setIsDetailModalOpen(false);
-            }}
-          >
-            x
-          </button>
         </div>
+        <button
+          class="modal-close is-large is-danger"
+          aria-label="close"
+        ></button>
       </div>
     </div>
     <div
