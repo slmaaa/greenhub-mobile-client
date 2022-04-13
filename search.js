@@ -23,7 +23,23 @@ const Search = ({ setCurrentPage, currentPage }) => {
         const [searchInput, setSearchInput] = useState("");
         const [isInputSearchFocused, setIsInputSearchFocused] = useState(false);
         const [dropdownItems, setDropdownItems] = useState([]);
-        const clickedRestaurantRef = useRef(null);
+        const dummyRestaurant = {
+            url: "https://greenhub.slmaaa.work/backend/restaurant/270e95dd-e9e5-439b-bc92-f1864c84b3ab/",
+            name: "Shun Kee",
+            region: "KLN",
+            district: "YT",
+            address: null,
+            cuisine: "cha chang ting",
+            price_range_low: 50,
+            price_range_high: 100,
+            open_rice_url: "https://www.openrice.com/en/hongkong/r-shun-kee-typhoon-shelter-causeway-bay-hong-kong-style-seafood-r50112",
+            lat: 22.31208,
+            lng: 114.16843,
+            point: "SRID=4326;POINT (114.16843 22.31208)",
+            business_hours_from: "10:00:00",
+            business_hours_to: "21:00:00",
+        };
+        const clickedRestaurantRef = useRef(dummyRestaurant);
         const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
         const mapRef = useRef(null);
