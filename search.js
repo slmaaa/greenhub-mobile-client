@@ -147,12 +147,14 @@ const Search = ({ setCurrentPage, currentPage }) => {
       <div class="modal-content">
         <!-- Any other Bulma elements you want -->
         <div class="box has-background-primary-light mx-3">
-          <button class="is-large button is-rounded is-danger is-pulled-right">
+          <button
+            class="button is-rounded is-danger is-pulled-right modal-close-button"
+          >
             <span class="icon">
               <i class="fas fa-xmark"></i>
             </span>
           </button>
-          <figure class="image restaurant-pic">
+          <figure class="image restaurant-pic my-3">
             <img src=${clickedRestaurantRef.current.picture} />
           </figure>
           <p class="">

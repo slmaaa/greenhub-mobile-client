@@ -103,3 +103,8 @@ hr.solid {
 .restaurant-pic {
     width: 80vh;
 }
+
+.modal_close_button {
+    height: 3vh;
+    width: 3vh;
+}
