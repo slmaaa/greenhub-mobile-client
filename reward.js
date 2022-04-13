@@ -22,12 +22,10 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
             return html ` <div
       class="box mb-3 has-background-primary-light is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between"
     >
-      <div class="illustration">
-        <figure class="image is-64x64">
-          <img src=${reward.illustration} />
-        </figure>
-      </div>
-      <div class="is-flex is-flex-direction-column is-size-6">
+      <figure class="image is-64x64">
+        <img src=${reward.illustration} />
+      </figure>
+      <div class="is-flex is-flex-direction-column is-size-6 reward-info">
         ${reward.name}<br />
         Provided by: ${reward.provider}<br />
         <button class="button is-primary is-size-6">
