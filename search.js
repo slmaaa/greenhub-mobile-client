@@ -23,6 +23,8 @@ const Search = ({ setCurrentPage, currentPage }) => {
         const [searchInput, setSearchInput] = useState("");
         const [isInputSearchFocused, setIsInputSearchFocused] = useState(false);
         const [dropdownItems, setDropdownItems] = useState([]);
+        const clickedRestaurantRef = useRef(null);
+        const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
         const mapRef = useRef(null);
 
@@ -39,6 +41,10 @@ const Search = ({ setCurrentPage, currentPage }) => {
             const marker = new google.maps.Marker({
                 position: { lat: restaurant.lat, lng: restaurant.lng },
                 map: mapRef.current,
+            });
+            marker.addListener("click", () => {
+                clickedRestaurantRef.current = restaurant;
+                setIsDetailModalOpen(true);
             });
         };
 
@@ -116,6 +122,31 @@ const Search = ({ setCurrentPage, currentPage }) => {
         }, []);
 
         return html `
+    <div id="restaurant-detail-modal" class="modal is-active">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+        <div class="box has-background-primary-light">
+          <p class=" has-text-primary">
+            ${clickedRestaurantRef.current.name}<br />
+            Cuisine type: ${clickedRestaurantRef.current.cuisine}<br />
+            Address: ${clickedRestaurantRef.current.address}<br />
+            Price: ${clickedRestaurantRef.current.price_range_low} -
+            ${clickedRestaurantRef.current.price_range_high}<br />
+            Business hour: ${clickedRestaurantRef.current.business_hours_from} -
+            ${clickedRestaurantRef.current.business_hours_to}<br />
+            <button
+              class="button is-warning"
+              onclick="location.href='${clickedRestaurantRef.current
+                .open_rice_url}'"
+            >
+              Openrice
+            </button>
+          </p>
+          <button class="button is-delete is-overlay is-pulled-right"></button>
+        </div>
+      </div>
+    </div>
     <div
       id="search-bar"
       class="field my-5 mx-4 is-overlay search-bar has-addons-centered is-flex is-align-items-center is-justify-content-center"
