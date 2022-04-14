@@ -102,11 +102,12 @@ hr.solid {
 }
 
 .restaurant-pic {
-    max-width: 300px;
+    width: 50%;
 }
 
 .modal_close_button {
-    height: d width: 3vh;
+    height: 3vh;
+    width: 3vh;
 }
 
 .qr-code-box {
