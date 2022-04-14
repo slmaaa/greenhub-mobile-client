@@ -4,7 +4,7 @@ A web mobile application for Greenhub users. Aim to make the experience of using
 
 ## Usage
 
-1. Access [https://greenhub.slmaaa.work](https://greenhub.restaurant.slmaaa.work)
+1. Access [https://greenhub.slmaaa.work](https://greenhub.slmaaa.work)
 2. (Optional) Add application to home page
 
 ## Main screens
