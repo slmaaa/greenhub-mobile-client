@@ -12,11 +12,14 @@ import { getData } from "./fetch.js";
 
 const REWARD_DB_URL = "https://greenhub.slmaaa.work/backend/reward/";
 
-const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
+const Reward = ({ setCurrentPage, currentPage, userDataRef }) => {
         const [searchInput, setSearchInput] = useState("");
         const [isLoading, setIsLoading] = useState(true);
         const [isInputSearchFocused, setIsInputSearchFocused] = useState(false);
         const resultRef = useRef(null);
+        const [displayedGCash, setDisplayedGCash] = useState(
+            userDataRef.current.g_cash
+        );
 
         const generateRewardItems = (reward) => {
             return html ` <div
@@ -47,13 +50,17 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
                 });
         }, []);
 
+        useEffect(() => {
+            setDisplayedGCash(userDataRef.current.g_cash);
+        }, [userDataRef.current.g_cash]);
+
         return html `
     <div class="hero is-flex is-flex-direction-column full-height">
       <div
         class=" pt-5 px-5 is-flex-grow-1 is-flex is-flex-direction-column is-justify-content-start"
       >
         <div
-          class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center"
+          class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center mb-3"
         >
           <button class="button is-danger is-inverted ml-1 redeemed-button">
             <span class="icon is-large">
@@ -85,6 +92,10 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
             </div>
           </div>
         </div>
+
+        <span class="is-size-5 has-text-weight-bold ml-2 my-2"
+          >You have ${displayedGCash} G-CASH</span
+        >
         ${isLoading
           ? html`<div class="is-flex is-flex-grow-1 is-align-items-center">
               <progress class="progress is-small is-primary" max="100">

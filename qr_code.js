@@ -13,19 +13,18 @@ import QRCode from "https://cdn.skypack.dev/qrcode";
 
 import NavBar from "./navigation_bar.js";
 
-export const QR_Code = ({
-        setCurrentPage,
-        currentPage,
-        userID,
-        balance,
-        setBalance,
-        GCash,
-        setGCash,
-    }) => {
+export const QR_Code = ({ setCurrentPage, currentPage, userDataRef }) => {
         const [pid, setPid] = useState(null);
         const [status, setStatus] = useState("LOADING");
         const [isGCashModalActive, setIsGCashModalActive] = useState(false);
         const [isLuckyDrawButtonActive, setIsLuckyDrawButtonActive] = useState(true);
+        const [displayedBalance, setDisplayedBalance] = useState(
+            userDataRef.current.balance
+        );
+        const [displayedGCash, setDisplayedGCash] = useState(
+            userDataRef.current.g_cash
+        );
+
         const ws = useRef(null);
 
         const dummpyResult = { g_cash: 0 };
@@ -48,7 +47,7 @@ export const QR_Code = ({
                 console.log("opened");
                 console.log("Sending user request");
                 const request = {};
-                request.user_id = userID.current;
+                request.user_id = userDataRef.current.userID;
                 console.log(request);
                 ws.current.send(JSON.stringify(request));
             };
@@ -62,8 +61,9 @@ export const QR_Code = ({
                     setStatus("READY");
                 } else if (json.response_type === "COMPLETED") {
                     resultRef.current = json;
-                    setBalance(balance + parseInt(json.balance_delta));
-                    setGCash(GCash + parseInt(json.g_cash));
+
+                    userDataRef.current.balance += parseInt(json.balance_delta);
+                    userDataRef.current.g_cash += parseInt(json.g_cash);
                     setStatus("COMPLETED");
                 }
             };
@@ -87,6 +87,11 @@ export const QR_Code = ({
                 );
             }
         }, [status]);
+
+        useEffect(() => {
+            setDisplayedBalance(userDataRef.current.balance);
+            setDisplayedGCash(userDataRef.current.g_cash);
+        }, [userDataRef.current.balance, userDataRef.current.g_cash]);
 
         return html `
     <div class="modal ${isGCashModalActive ? "is-active" : ""}">
@@ -127,7 +132,7 @@ export const QR_Code = ({
             class="is-flex is-justify-content-space-between is-align-items-center"
           >
             <span class="is-size-5 has-text-weight-bold ml-2"
-              >Balance: $${balance.toString()}</span
+              >Balance: $${displayedBalance}</span
             >
           </div>
         </div>
@@ -193,7 +198,7 @@ export const QR_Code = ({
             setStatus("LOADING");
             console.log("Sending user request");
             const request = {};
-            request.user_id = userID.current;
+            request.user_id = userDataRef.current.userID;
             console.log(request);
             ws.current.send(JSON.stringify(request));
           }}

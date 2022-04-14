@@ -9,12 +9,23 @@ import {
 } from "https://cdn.skypack.dev/preact/hooks";
 import NavBar from "./navigation_bar.js";
 
-export const Home = ({ setCurrentPage, user, currentPage, balance, GCash }) => {
+export const Home = ({ setCurrentPage, currentPage, user, userDataRef }) => {
     const [topPercent, setTopPercent] = useState(10);
+    const [displayedBalance, setDisplayedBalance] = useState(
+        userDataRef.current.balance
+    );
+    const [displayedGCash, setDisplayedGCash] = useState(
+        userDataRef.current.g_cash
+    );
 
     useEffect(() => {
         console.log(user);
     }, []);
+
+    useEffect(() => {
+        setDisplayedBalance(userDataRef.current.balance);
+        setDisplayedGCash(userDataRef.current.g_cash);
+    }, [userDataRef.current.balance, userDataRef.current.g_cash]);
 
     const generateTask = (description, reward, finishedCount, totalCount) => {
         return html `<div class="my-4">
@@ -48,7 +59,7 @@ export const Home = ({ setCurrentPage, user, currentPage, balance, GCash }) => {
             class="is-flex is-justify-content-space-between is-align-items-center"
           >
             <span class="is-size-5 has-text-weight-bold ml-2"
-              >Balance: $${balance.toString()}</span
+              >Balance: $${displayedBalance}</span
             >
           </div>
         </div>
@@ -105,7 +116,7 @@ export const Home = ({ setCurrentPage, user, currentPage, balance, GCash }) => {
                 >
                 <br />
                 <span class="is-size-5 has-text-weight-bold"
-                  >${GCash.toString()}</span
+                  >${displayedGCash}</span
                 >
                 <span class="is-size-5 has-text-weight-bold"> G-Cash</span>
               </div>
