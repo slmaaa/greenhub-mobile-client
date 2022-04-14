@@ -96,16 +96,18 @@ const Reward = ({ setCurrentPage, currentPage, userDataRef }) => {
         <span class="is-size-5 has-text-weight-bold ml-2 my-2"
           >You have ${displayedGCash} G-CASH</span
         >
-        ${isLoading
-          ? html`<div class="is-flex is-flex-grow-1 is-align-items-center">
-              <progress class="progress is-small is-primary" max="100">
-                15%
-              </progress>
-              <div></div>
-            </div>`
-          : resultRef.current.map((reward) => {
-              return generateRewardItems(reward);
-            })}
+        <div class="is-overflow">
+          ${isLoading
+            ? html`<div class="is-flex is-flex-grow-1 is-align-items-center">
+                <progress class="progress is-small is-primary" max="100">
+                  15%
+                </progress>
+                <div></div>
+              </div>`
+            : resultRef.current.map((reward) => {
+                return generateRewardItems(reward);
+              })}
+        </div>
       </div>
       <${NavBar} setCurrentPage=${setCurrentPage} currentPage=${currentPage} />
     </div>
