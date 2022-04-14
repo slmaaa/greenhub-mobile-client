@@ -157,7 +157,7 @@ const Search = ({ setCurrentPage, currentPage }) => {
             </span>
         </div>
           </button>
-          <figure class="image restaurant-pic my-3">
+          <figure class="image restaurant-pic is-128x128">
             <img src=${clickedRestaurantRef.current.picture} />
           </figure>
           <p class="">
