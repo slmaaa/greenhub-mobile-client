@@ -83,7 +83,7 @@ hr.solid {
 }
 
 .qr-button {
-    position: absolute;
+    position: fixed;
     bottom: 5vh;
     height: 7.5vh;
     width: 7.5vh;
