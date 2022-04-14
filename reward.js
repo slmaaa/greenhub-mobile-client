@@ -20,7 +20,7 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
 
         const generateRewardItems = (reward) => {
             return html ` <div
-      class="box mt-3 has-background-primary-light is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between"
+      class="box mt-5 has-background-primary-light is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between"
     >
       <figure class="image is-64x64">
         <img src=${reward.illustration} />
