@@ -20,7 +20,7 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
 
         const generateRewardItems = (reward) => {
             return html ` <div
-      class="box mb-3 has-background-primary-light is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between"
+      class="box mt-3 has-background-primary-light is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between"
     >
       <figure class="image is-64x64">
         <img src=${reward.illustration} />
@@ -55,9 +55,9 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
         <div
           class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center"
         >
-          <button class="button is-warning is-rounded ml-1 redeemed-button">
-            <span class="icon is-large redeemed-icon">
-              <i class="fas fa-ticket"></i>
+          <button class="button is-danger is-inverted ml-1 redeemed-button">
+            <span class="icon is-large">
+              <i class="fas fa-ticket fa-lg"></i>
             </span>
           </button>
           <div

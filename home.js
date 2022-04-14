@@ -59,7 +59,7 @@ export const Home = ({ setCurrentPage, user, currentPage, balance, GCash }) => {
               <div class="is-flex is-justify-content-center info-box-container">
                 <div class="box mt-3 has-background-primary-dark info-box">
                   <span class="has-text-white has-text-weight-bold is-size-5"
-                    >You have save<br /><span
+                    >You have saved<br /><span
                       class="is-size-1 has-text-weight-bold is-underlined"
                       >$200</span
                     >
@@ -85,7 +85,7 @@ export const Home = ({ setCurrentPage, user, currentPage, balance, GCash }) => {
               >
                 <div class="box mt-3 has-background-warning-dark info-box">
                   <span class="has-text-white has-text-weight-bold is-size-5"
-                    >You have save <br /><span
+                    >You have saved <br /><span
                       class="is-size-1 has-text-weight-bold is-underlined"
                       >60L</span
                     >
@@ -111,6 +111,9 @@ export const Home = ({ setCurrentPage, user, currentPage, balance, GCash }) => {
               </div>
               <button
                 class="button is-size-7 is-inverted is-primary is-align-self-flex-end has-text-right"
+                onclick=${() => {
+                  setCurrentPage("REWARD");
+                }}
               >
                 Check rewards >>
               </button>

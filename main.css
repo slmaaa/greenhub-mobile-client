@@ -16,6 +16,7 @@
 
 .navbar-default {
     width: 100vw;
+    position: fixed;
     bottom: 0;
 }
 
@@ -84,7 +85,7 @@ hr.solid {
 
 .qr-button {
     position: fixed;
-    bottom: 5vh;
+    bottom: 3.5vh;
     height: 7.5vh;
     width: 7.5vh;
     right: 0;
@@ -151,10 +152,7 @@ hr.solid {
 .redeemed-button {
     position: absolute;
     top: 3vh;
-    width: 3vh;
     right: 4vw;
 }
 
-reward-searhbar {
-    width: 70vw;
-}
+.reward-searhbar {}
