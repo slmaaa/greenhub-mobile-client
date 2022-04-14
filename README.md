@@ -1,5 +1,7 @@
 # greenhub-mobile-client
 
+<img src="images/maskable_icon.png" alt="icon" width="150"/>
+
 A web mobile application for Greenhub users. Aim to make the experience of using Greenhub service fluent and user-friendly.
 
 ## Usage
