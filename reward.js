@@ -53,27 +53,36 @@ const Reward = ({ setCurrentPage, currentPage, GCash, setGCash }) => {
         class=" pt-5 px-5 is-flex-grow-1 is-flex is-flex-direction-column is-justify-content-start"
       >
         <div
-          id="search-bar"
-          class="field has-addons-centered is-flex is-align-items-center is-justify-content-center"
+          class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center"
         >
-          <div class="field">
-            <p class="control has-icons-right">
-              <input
-                class="input is-medium is-rounded is-expanded "
-                type="text"
-                id="search-input"
-                onblur=${() => setIsInputSearchFocused(false)}
-                onfocus=${(e) => {
-                  setIsInputSearchFocused(true);
-                }}
-                oninput=${(e) => {
-                  setSearchInput(e.target.value);
-                }}
-              />
-              <span class="icon is-small is-right is-white"
-                ><i class="fas fa-search"> </i>
-              </span>
-            </p>
+          <button class="button is-warning is-rounded ml-1 redeemed-button">
+            <span class="icon is-large redeemed-icon">
+              <i class="fas fa-ticket"></i>
+            </span>
+          </button>
+          <div
+            id="search-bar"
+            class="field has-addons-centered is-flex is-align-items-center is-justify-content-center mr-6"
+          >
+            <div class="field is-flex">
+              <p class="control has-icons-right is-flex-shrink-1">
+                <input
+                  class="input is-medium is-rounded "
+                  type="text"
+                  id="search-input"
+                  onblur=${() => setIsInputSearchFocused(false)}
+                  onfocus=${(e) => {
+                    setIsInputSearchFocused(true);
+                  }}
+                  oninput=${(e) => {
+                    setSearchInput(e.target.value);
+                  }}
+                />
+                <span class="icon is-small is-right is-white"
+                  ><i class="fas fa-search fa-lg"> </i>
+                </span>
+              </p>
+            </div>
           </div>
         </div>
         ${isLoading

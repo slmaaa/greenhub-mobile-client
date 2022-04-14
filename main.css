@@ -84,7 +84,7 @@ hr.solid {
 
 .qr-button {
     position: absolute;
-    bottom: 2vh;
+    bottom: 5vh;
     height: 7.5vh;
     width: 7.5vh;
     right: 0;
@@ -141,4 +141,20 @@ hr.solid {
 
 .reward-info {
     width: 50vw;
+}
+
+.redeemed-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.redeemed-button {
+    position: absolute;
+    top: 3vh;
+    width: 3vh;
+    right: 4vw;
+}
+
+reward-searhbar {
+    width: 70vw;
 }
