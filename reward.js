@@ -96,7 +96,7 @@ const Reward = ({ setCurrentPage, currentPage, userDataRef }) => {
         <span class="is-size-5 has-text-weight-bold ml-2 my-2"
           >You have ${displayedGCash} G-CASH</span
         >
-        <div class="is-overflow">
+        <div class="rewards-div">
           ${isLoading
             ? html`<div class="is-flex is-flex-grow-1 is-align-items-center">
                 <progress class="progress is-small is-primary" max="100">

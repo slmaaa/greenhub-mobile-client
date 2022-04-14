@@ -154,3 +154,8 @@ hr.solid {
     top: 7vw;
     right: 4vw;
 }
+
+.rewards-div {
+    overflow-y: scroll;
+    height: 60vh;
+}
