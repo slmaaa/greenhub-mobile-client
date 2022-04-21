@@ -1,12 +1,11 @@
 import "https://cdn.skypack.dev/preact/debug";
-import { h } from "https://cdn.skypack.dev/preact";
+
+const { h, render } = preact;
+const { Router } = preactRouter;
+const { useEffect, useState, useRef } = preactHooks;
+
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
-import {
-    useEffect,
-    useState,
-    useRef,
-} from "https://cdn.skypack.dev/preact/hooks";
 
 export const NavBar = ({ setCurrentPage, currentPage }) => {
     const NAVBAR_BUTTON_PROP =

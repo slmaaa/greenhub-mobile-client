@@ -1,12 +1,9 @@
 import "https://cdn.skypack.dev/preact/debug";
-import { h } from "https://cdn.skypack.dev/preact";
+const { h, render } = preact;
+const { Router } = preactRouter;
+const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
-import {
-    useEffect,
-    useState,
-    useRef,
-} from "https://cdn.skypack.dev/preact/hooks";
 import { v4 as uuidv4 } from "https://cdn.skypack.dev/uuid";
 import WebSocket from "https://cdn.skypack.dev/isomorphic-ws";
 import QRCode from "https://cdn.skypack.dev/qrcode";

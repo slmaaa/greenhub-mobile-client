@@ -1,63 +1,62 @@
 import "https://cdn.skypack.dev/preact/debug";
-import { h } from "https://cdn.skypack.dev/preact";
+const { h, render } = preact;
+const { Router } = preactRouter;
+const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
-import {
-  useEffect,
-  useState,
-  useRef,
-} from "https://cdn.skypack.dev/preact/hooks";
 
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithRedirect,
-} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+export const Login = ({ setCurrentPage }) => {
+    const user = useRef(null);
 
-const provider = new GoogleAuthProvider();
+    const [isLoading, setIsLoading] = useState(true);
+    const [isLogined, setIsLogined] = useState(false);
+    useEffect(() => {
+        setIsLoading(false);
+        console.log(isLogined);
+    }, []);
 
-export const Login = ({ setCurrentPage, app }) => {
-  const auth = useRef(null);
-  const user = useRef(null);
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLogined, setIsLogined] = useState(false);
-  useEffect(() => {
-    auth.current = getAuth(app.current);
-    setIsLoading(false);
-    console.log(isLogined);
-  }, []);
-
-  useEffect(() => {
-    if (!isLogined) return;
-  }),
-    [isLogined];
-
-  const handleGoogleLogin = () => {
-    signInWithRedirect(auth.current, provider);
-    setIsLogined(true);
-  };
-
-  return html`
+    return html `
     <div class="hero px-5 py-5 is-flex is-flex-direction-column is-fullheight">
       <div class="pb-5 is-flex is-flex-direction-column full-height">
         <div>
           <h1
-            class="title is-3 has-text-primary is-primary has-text-weight-bold"
+            class="title is-2 has-text-primary is-primary has-text-weight-bold mb-6"
           >
-            Greenhub
-          </h1>
-          <h1 class="subtitle has-text-dark has-text-weight-light">
-            Login to your account
+            Login
           </h1>
         </div>
-        <div class="box is-flex-grow-1 my-6">Icon</div>
+        <div>
+          <div class="field mt-6">
+            <label class="label">Email</label>
+            <div class="control">
+              <input class="input" type="email" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" type="password" />
+            </div>
+          </div>
+          <button class="button is-primary is-medium is-pulled-right">
+            Log in</button
+          ><br />
+        </div>
         <div class="one-third-height py-6">
           <button
-            class="button is-primary full-width"
-            onClick=${handleGoogleLogin}
+            class="button is-danger is-outlined mt-3 full-width"
+            onclick="${() => {
+              setCurrentPage("REGISTER");
+            }}"
           >
-            Google
+            Register now
+          </button>
+          <button class="button is-primary is-outlined full-width mt-5">
+            Continue with Google
+          </button>
+          <button class="button is-primary is-outlined full-width mt-5">
+            Continue with Facebook
           </button>
         </div>
       </div>

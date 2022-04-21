@@ -1,12 +1,10 @@
 import "https://cdn.skypack.dev/preact/debug";
-import { h } from "https://cdn.skypack.dev/preact";
+
+const { h, render } = preact;
+const { Router } = preactRouter;
+const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
-import {
-    useEffect,
-    useState,
-    useRef,
-} from "https://cdn.skypack.dev/preact/hooks";
 import NavBar from "./navigation_bar.js";
 import { getData } from "./fetch.js";
 
