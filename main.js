@@ -17,7 +17,7 @@ import Register from "./register.js";
 const Main = () => {
     //useStates for routing
     const user = useRef(null);
-    const [currentPage, setCurrentPage] = useState("LOGIN");
+    const [currentPage, setCurrentPage] = useState("HOME");
     const [isLoading, setIsLoading] = useState(true);
 
     //DUMMY VALUES FOR TESTING
@@ -74,6 +74,7 @@ const Main = () => {
     return scene;
     return html ` 
     <${Router}>
+        <${Home} path="/" setCurrentPage=${set}/>
         <${Login} path="/login" />
         <${Register} path="/register" />
     </${Router}>`;
