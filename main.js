@@ -71,7 +71,7 @@ const Main = () => {
       />`;
             break;
     }
-    //return scene;
+    return scene;
     return html ` 
     <${Router}>
         <${Login} path="/login" />
