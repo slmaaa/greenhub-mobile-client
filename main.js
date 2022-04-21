@@ -73,7 +73,7 @@ const Main = () => {
     }
     //return scene;
     return html ` 
-    <${Router} onChange=${(e) => this.setState(e)}>
+    <${Router}>
         <${Login} path="/login" />
         <${Register} path="/register" />
     </${Router}>`;
