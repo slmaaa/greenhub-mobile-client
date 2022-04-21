@@ -22,7 +22,7 @@ const Main = () => {
 
     //DUMMY VALUES FOR TESTING
     const userDataRef = useRef({
-        userID: "17845878-35c3-4ef6-b9b7-8ccbd26a08c2",
+        userID: "d66b3691-836f-4aaf-9ddf-6566b06a9725",
         balance: 0,
         g_cash: 1000,
     });
