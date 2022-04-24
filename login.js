@@ -1,6 +1,6 @@
 import "https://cdn.skypack.dev/preact/debug";
 const { h, render } = preact;
-const { Router } = preactRouter;
+const { Router, route } = preactRouter;
 const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
@@ -71,7 +71,7 @@ export const Login = ({ setCurrentPage }) => {
           <button
             class="button is-danger is-outlined mt-3 full-width"
             onclick="${() => {
-              setCurrentPage("REGISTER");
+              route("/register");
             }}"
           >
             Register now
