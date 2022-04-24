@@ -32,8 +32,7 @@ const Main = () => {
                 console.log(data);
             })
             .catch((err) => {
-                console,
-                log(err);
+                console.log(err);
             });
     }, []);
 
