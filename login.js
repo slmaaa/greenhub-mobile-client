@@ -20,6 +20,10 @@ export const Login = ({ setCurrentPage }) => {
     const handleLogin = () => {
         fetch(LOGIN_URL, {
                 method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify({
                     email: document.getElementById("email-input").value,
                     password: document.getElementById("password-input").value,
