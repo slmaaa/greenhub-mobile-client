@@ -1,7 +1,7 @@
 import "https://cdn.skypack.dev/preact/debug";
 
 const { h, render } = preact;
-const { Router } = preactRouter;
+const { Router, route } = preactRouter;
 const { useEffect, useState, useRef } = preactHooks;
 
 import htm from "https://cdn.skypack.dev/htm";
@@ -26,7 +26,12 @@ const Main = () => {
                 "Content-Type": "application/json",
             },
             credentials: "include",
-        }).then((response) => console.log(response));
+        }).then((response) => {
+            console.log(response);
+            if (!response.ok) {
+                route("/login");
+            }
+        });
     }, []);
 
     return html ` 
