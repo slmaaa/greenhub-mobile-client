@@ -30,15 +30,17 @@ const Main = () => {
             console.log(response);
             if (!response.ok) {
                 route("/login");
+            } else {
+                route("/home");
             }
         });
     }, []);
 
     return html ` 
     <${Router}>
-        <${Home} path="/" />
         <${Login} path="/login" />
         <${Register} path="/register" />
+        <${Home} path="/home" />
         <${Search} path="/search" />
         <${QR_Code} path="/qr_code"/>
         <${Reward} path="/reward" />
