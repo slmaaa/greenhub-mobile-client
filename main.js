@@ -20,20 +20,13 @@ const REFRESH_URL =
 const Main = () => {
     useEffect(() => {
         fetch(REFRESH_URL, {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+        }).then((response) => console.log(response));
     }, []);
 
     return html ` 
