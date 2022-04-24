@@ -15,7 +15,7 @@ import Reward from "./reward.js";
 import Register from "./register.js";
 
 const REFRESH_URL =
-    "https://greenhub.slmaaa.work/backend/dj-rest-auth/refresh/";
+    "https://greenhub.slmaaa.work/backend/dj-rest-auth/token/refresh/";
 
 const Main = () => {
     useEffect(() => {
