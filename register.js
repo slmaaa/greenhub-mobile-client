@@ -9,20 +9,16 @@ const Register = () => {
     const ws = useRef(null);
 
     const registerRequestRef = useRef(null);
-    useEffect(() => {
-        ws.current = new WebSocket("wss://greenhub.slmaaa.work/ws/user_register");
-        ws.current.onopen = () => {
-            console.log("opened");
-        };
-        ws.current.onmessage = (data) => {
-            console.log("Received data");
-            console.log(data);
-        };
 
-        ws.current.onclose = () => {
-            console.log("closed");
+    const handleRegister = () => {
+        const request = {
+            name: document.getElementById("name-input").value,
+            email: document.getElementById("email-input").value,
+            password: document.getElementById("password-input").value,
         };
-    }, []);
+        console.log(request);
+    };
+
     return html `
     <div class="hero px-5 py-5 is-flex is-flex-direction-column is-fullheight">
       <div class="pb-5 is-flex is-flex-direction-column full-height">
@@ -54,15 +50,7 @@ const Register = () => {
           </div>
           <button
             class="button is-primary is-medium is-pulled-right"
-            onclick="${() => {
-              const request = {
-                name: document.getElementById("name-input").value,
-                email: document.getElementById("email-input").value,
-                password: document.getElementById("password-input").value,
-              };
-              console.log(request);
-              ws.current.send(JSON.stringify(request));
-            }}"
+            onclick="${handleRegister}"
           >
             Log in</button
           ><br />

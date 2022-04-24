@@ -5,6 +5,8 @@ const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 
+const LOGIN_URL = "https://greenhub.slmaaa.work/backend/dj-rest-auth/login/";
+
 export const Login = ({ setCurrentPage }) => {
     const user = useRef(null);
 
@@ -14,6 +16,21 @@ export const Login = ({ setCurrentPage }) => {
         setIsLoading(false);
         console.log(isLogined);
     }, []);
+
+    const handleLogin = () => {
+        fetch(LOGIN_URL, {
+                method: "POST",
+                body: JSON.stringify({
+                    email: document.getElementById("email-input").value,
+                    password: document.getElementById("password-input").value,
+                }),
+                credentials: "include",
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
+    };
 
     return html `
     <div class="hero px-5 py-5 is-flex is-flex-direction-column is-fullheight">
@@ -29,17 +46,20 @@ export const Login = ({ setCurrentPage }) => {
           <div class="field mt-6">
             <label class="label">Email</label>
             <div class="control">
-              <input class="input" type="email" />
+              <input class="input" id="email-input" type="email" />
             </div>
           </div>
 
           <div class="field">
             <label class="label">Password</label>
             <div class="control">
-              <input class="input" type="password" />
+              <input class="input" id="password-input" type="password" />
             </div>
           </div>
-          <button class="button is-primary is-medium is-pulled-right">
+          <button
+            class="button is-primary is-medium is-pulled-right"
+            onclick="${handleLogin}"
+          >
             Log in</button
           ><br />
         </div>
