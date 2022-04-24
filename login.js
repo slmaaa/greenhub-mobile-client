@@ -19,21 +19,26 @@ export const Login = ({ setCurrentPage }) => {
 
     const handleLogin = () => {
         fetch(LOGIN_URL, {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: document.getElementById("email-input").value,
-                    password: document.getElementById("password-input").value,
-                }),
-                credentials: "include",
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            });
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: document.getElementById("email-input").value,
+                password: document.getElementById("password-input").value,
+            }),
+            credentials: "include",
+        }).then((response) => {
+            if (response.ok) {
+                response.json().then((data) => {
+                    sessionStorage.setItem("user", data["user"]);
+                    route("/home");
+                });
+            } else {
+                console.log("login failed");
+            }
+        });
     };
 
     return html `

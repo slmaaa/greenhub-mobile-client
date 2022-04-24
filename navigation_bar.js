@@ -19,7 +19,7 @@ export const NavBar = ({ setCurrentPage, currentPage }) => {
       <button
         class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("HOME")}"
         onclick=${() => {
-          setCurrentPage("HOME");
+          route("/home");
         }}
       >
         <div class="is-flex is-flex-direction-column is-align-items-center">
@@ -32,7 +32,7 @@ export const NavBar = ({ setCurrentPage, currentPage }) => {
       <button
         class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("SEARCH")}"
         onclick=${() => {
-          setCurrentPage("SEARCH");
+          route("/search");
         }}
       >
         <div class="is-flex is-flex-direction-column is-align-items-center">
@@ -45,7 +45,7 @@ export const NavBar = ({ setCurrentPage, currentPage }) => {
       <button
         class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("REWARD")}"
         onclick=${() => {
-          setCurrentPage("REWARD");
+          route("/reward");
         }}
       >
         <div class="is-flex is-flex-direction-column is-align-items-center">
@@ -63,7 +63,7 @@ export const NavBar = ({ setCurrentPage, currentPage }) => {
       class="qr-button button mr-1 ml-1 is-rounded is-warning is-flex is-flex-direction-column is-align-items-center"
       onclick=${() => {
         if (currentPage === "QR_CODE") return;
-        setCurrentPage("QR_CODE");
+        route("/qr_code");
       }}
     >
       <span class="m-0 icon is-large">
