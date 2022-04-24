@@ -1,7 +1,7 @@
 import "https://cdn.skypack.dev/preact/debug";
 
 const { h, render } = preact;
-const { Router } = preactRouter;
+const { Router, route } = preactRouter;
 const { useEffect, useState, useRef } = preactHooks;
 
 import htm from "https://cdn.skypack.dev/htm";
