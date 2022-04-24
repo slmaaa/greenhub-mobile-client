@@ -8,23 +8,14 @@ const html = htm.bind(h);
 
 import NavBar from "./navigation_bar.js";
 
-export const Home = ({ setCurrentPage, currentPage, user, userDataRef }) => {
+export const Home = () => {
     const [topPercent, setTopPercent] = useState(10);
-    const [displayedBalance, setDisplayedBalance] = useState(
-        userDataRef.current.balance
-    );
-    const [displayedGCash, setDisplayedGCash] = useState(
-        userDataRef.current.g_cash
-    );
+    const [displayedBalance, setDisplayedBalance] = useState(0);
+    const [displayedGCash, setDisplayedGCash] = useState(0);
 
     useEffect(() => {
         console.log(user);
     }, []);
-
-    useEffect(() => {
-        setDisplayedBalance(userDataRef.current.balance);
-        setDisplayedGCash(userDataRef.current.g_cash);
-    }, [userDataRef.current.balance, userDataRef.current.g_cash]);
 
     const generateTask = (description, reward, finishedCount, totalCount) => {
         return html `<div class="my-4">
@@ -152,7 +143,7 @@ export const Home = ({ setCurrentPage, currentPage, user, userDataRef }) => {
           </div>
         </div>
       </div>
-      <${NavBar} setCurrentPage=${setCurrentPage} currentPage=${currentPage} />
+      <${NavBar} />
     </div>
   `;
 };

@@ -5,6 +5,9 @@ const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 
+REGISTER_URL =
+    "https://greenhub.slmaaa.work/backend/dj-rest-auth/registration/";
+
 const Register = () => {
     const ws = useRef(null);
 
@@ -17,6 +20,19 @@ const Register = () => {
             password: document.getElementById("password-input").value,
         };
         console.log(request);
+        fetch(REGISTER_URL, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(request),
+                credentials: "include",
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
     };
 
     return html `
