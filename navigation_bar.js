@@ -7,17 +7,17 @@ const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 
-export const NavBar = ({ setCurrentPage, currentPage }) => {
+export const NavBar = () => {
     const NAVBAR_BUTTON_PROP =
         "button is-radiusless is-shadowless is-primary nav-button is-centered";
 
-    const setTabActiveness = (tabName) =>
-        tabName === currentPage ? "" : "is-light";
+    const setTabActiveness = (path) =>
+        path === window.location.pathname ? "" : "is-light";
 
     return html `
     <div class="navbar-default is-flex is-flex-direction-row">
       <button
-        class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("HOME")}"
+        class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("/home")}"
         onclick=${() => {
           route("/home");
         }}
@@ -30,7 +30,7 @@ export const NavBar = ({ setCurrentPage, currentPage }) => {
         </div>
       </button>
       <button
-        class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("SEARCH")}"
+        class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("/search")}"
         onclick=${() => {
           route("/search");
         }}
@@ -43,7 +43,7 @@ export const NavBar = ({ setCurrentPage, currentPage }) => {
         </div>
       </button>
       <button
-        class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("REWARD")}"
+        class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("/rewards")}"
         onclick=${() => {
           route("/reward");
         }}
