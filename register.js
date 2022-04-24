@@ -5,7 +5,7 @@ const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 
-REGISTER_URL =
+const REGISTER_URL =
     "https://greenhub.slmaaa.work/backend/dj-rest-auth/registration/";
 
 const Register = () => {
