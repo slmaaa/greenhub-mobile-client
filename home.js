@@ -28,6 +28,7 @@ export const Home = () => {
             setIsLoading(false);
         } else {
             fetchUserInfo().then(() => {
+                user = sessionStorage.getItem("user");
                 userRef.current = JSON.parse(user);
                 setDisplayedBalance(userRef.current.balance);
                 setDisplayedGCash(userRef.current.g_cash);
