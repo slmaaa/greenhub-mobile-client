@@ -62,7 +62,9 @@ export const NavBar = () => {
     <button
       class="qr-button button mr-1 ml-1 is-rounded is-warning is-flex is-flex-direction-column is-align-items-center"
       onclick=${() => {
-        if (currentPage === "QR_CODE") return;
+        if (window.location.pathname === "/qr_code") {
+          return;
+        }
         route("/qr_code");
       }}
     >

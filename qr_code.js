@@ -9,18 +9,17 @@ import WebSocket from "https://cdn.skypack.dev/isomorphic-ws";
 import QRCode from "https://cdn.skypack.dev/qrcode";
 
 import NavBar from "./navigation_bar.js";
+import { fetchUserInfo } from "./fetch.js";
 
-export const QR_Code = ({ setCurrentPage, currentPage, userDataRef }) => {
+export const QR_Code = () => {
         const [pid, setPid] = useState(null);
         const [status, setStatus] = useState("LOADING");
         const [isGCashModalActive, setIsGCashModalActive] = useState(false);
         const [isLuckyDrawButtonActive, setIsLuckyDrawButtonActive] = useState(true);
-        const [displayedBalance, setDisplayedBalance] = useState(
-            userDataRef.current.balance
-        );
-        const [displayedGCash, setDisplayedGCash] = useState(
-            userDataRef.current.g_cash
-        );
+        const [displayedBalance, setDisplayedBalance] = useState();
+        const [displayedGCash, setDisplayedGCash] = useState();
+
+        const userRef = useRef(null);
 
         const ws = useRef(null);
 
@@ -44,7 +43,7 @@ export const QR_Code = ({ setCurrentPage, currentPage, userDataRef }) => {
                 console.log("opened");
                 console.log("Sending user request");
                 const request = {};
-                request.user_id = userDataRef.current.userID;
+                request.user_id = userRef.curent.id;
                 console.log(request);
                 ws.current.send(JSON.stringify(request));
             };
@@ -57,11 +56,13 @@ export const QR_Code = ({ setCurrentPage, currentPage, userDataRef }) => {
                     setPid(json.pid);
                     setStatus("READY");
                 } else if (json.response_type === "COMPLETED") {
-                    resultRef.current = json;
-
-                    userDataRef.current.balance += parseInt(json.balance_delta);
-                    userDataRef.current.g_cash += parseInt(json.g_cash);
-                    setStatus("COMPLETED");
+                    fetchUserInfo.then((user) => {
+                        userRef.curent = user;
+                        setDisplayedBalance(user.balance);
+                        setDisplayedGCash(user.g_cash);
+                        resultRef.current = json;
+                        setStatus("COMPLETED");
+                    });
                 }
             };
 
@@ -86,9 +87,13 @@ export const QR_Code = ({ setCurrentPage, currentPage, userDataRef }) => {
         }, [status]);
 
         useEffect(() => {
-            setDisplayedBalance(userDataRef.current.balance);
-            setDisplayedGCash(userDataRef.current.g_cash);
-        }, [userDataRef.current.balance, userDataRef.current.g_cash]);
+            fetchUserInfo.then((user) => {
+                userRef.curent = user;
+                setDisplayedBalance(user.balance);
+                setDisplayedGCash(user.g_cash);
+                setIsLoading(false);
+            });
+        }, []);
 
         return html `
     <div class="modal ${isGCashModalActive ? "is-active" : ""}">
@@ -195,7 +200,7 @@ export const QR_Code = ({ setCurrentPage, currentPage, userDataRef }) => {
             setStatus("LOADING");
             console.log("Sending user request");
             const request = {};
-            request.user_id = userDataRef.current.userID;
+            request.user_id = userRef.current.id;
             console.log(request);
             ws.current.send(JSON.stringify(request));
           }}

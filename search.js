@@ -8,7 +8,7 @@ const html = htm.bind(h);
 
 import NavBar from "./navigation_bar.js";
 
-import { getData, postData } from "./fetch.js";
+import { getData } from "./fetch.js";
 
 const googleMapSrc =
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyC3vtiKXk5oOqyFRxIGiWd41XMe5gAKbUE";
