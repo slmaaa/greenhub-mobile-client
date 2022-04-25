@@ -26,7 +26,6 @@ export const Home = () => {
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(request),
                 credentials: "include",
             })
             .then((response) => response.json())
