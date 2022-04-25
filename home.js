@@ -22,8 +22,8 @@ export const Home = () => {
     useEffect(() => {
         fetchUserInfo().then((user) => {
             userRef.current = user;
-            setDisplayedBalance(userRef.current.balance);
-            setDisplayedGCash(userRef.current.g_cash);
+            setDisplayedBalance(userRef.current["balance"]);
+            setDisplayedGCash(userRef.current["g_cash"]);
         });
     }, []);
 
