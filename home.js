@@ -20,22 +20,11 @@ export const Home = () => {
     const userRef = useRef(null);
 
     useEffect(() => {
-        let user = sessionStorage.getItem("user");
-        console.log(user[0]);
-        if (user !== null) {
+        fetchUserInfo().then((user) => {
             userRef.current = user;
             setDisplayedBalance(userRef.current.balance);
             setDisplayedGCash(userRef.current.g_cash);
-            setIsLoading(false);
-        } else {
-            fetchUserInfo().then(() => {
-                user = sessionStorage.getItem("user");
-                userRef.current = user;
-                setDisplayedBalance(userRef.current.balance);
-                setDisplayedGCash(userRef.current.g_cash);
-                setIsLoading(false);
-            });
-        }
+        });
     }, []);
 
     const generateTask = (description, reward, finishedCount, totalCount) => {

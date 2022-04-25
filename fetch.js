@@ -69,7 +69,7 @@ export const fetchUserInfo = async() => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
-                    sessionStorage.setItem("user", data);
+                    return data;
                 });
         });
 };

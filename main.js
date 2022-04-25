@@ -21,24 +21,20 @@ const REFRESH_URL =
 const Main = () => {
     useEffect(() => {
         fetch(REFRESH_URL, {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            })
-            .then((response) => {
-                console.log(response);
-                if (!response.ok) {
-                    route("/login");
-                } else {
-                    route("/home");
-                }
-            })
-            .then(() => {
-                fetchUserInfo();
-            });
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+        }).then((response) => {
+            console.log(response);
+            if (!response.ok) {
+                route("/login");
+            } else {
+                route("/home");
+            }
+        });
     }, []);
 
     return html ` 
