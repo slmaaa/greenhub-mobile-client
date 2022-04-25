@@ -22,9 +22,7 @@ export const Home = () => {
     useEffect(() => {
         const setUserRef = async() => {
             const user = await fetchUserInfo();
-            userRef.current = user;
-            setDisplayedBalance(user.balance);
-            setDisplayedGCash(user.g_cash);
+            console.log(user);
         };
         setUserRef();
     }, []);
