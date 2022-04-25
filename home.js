@@ -18,8 +18,7 @@ export const Home = () => {
 
     const fetchUserInfo = async() => {
         const USER_URL = "https://greenhub.slmaaa.work/backend/dj-rest-auth/user";
-        const USER_PROFILE_URL =
-            "https://greenhub.slmaaa.work/backend/user_profile?";
+        const USER_PROFILE_URL = "https://greenhub.slmaaa.work/backend/profile?";
         fetch(USER_URL, {
                 method: "GET",
                 headers: {
