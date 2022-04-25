@@ -2,7 +2,19 @@
 // Import a Google Font
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 $family-sans-serif: "Poppins";
-$icon-text-spacing :0;
-$primary:#40916c;
-$primary-dark :#3a5a40;
-@import "../bulma/bulma.sass";
+$icon-text-spacing: 0;
+$primary: #40916c;
+$primary-dark: #3a5a40;
+@import "../bulma/sass/utilities/_all.sass";
+@import "../bulma/sass/base/_all.sass";
+@import "../bulma/sass/elements/button.sass";
+@import "../bulma/sass/elements/container.sass";
+@import "../bulma/sass/elements/box.sass";
+@import "../bulma/sass/elements/icon.sass";
+@import "../bulma/sass/elements/title.sass";
+@import "../bulma/sass/elements/progress.sass";
+@import "../bulma/sass/components/dropdown.sass";
+@import "../bulma/sass/components/modal.sass";
+@import "../bulma/sass/form/_all.sass";
+@import "../bulma/sass/layout/hero.sass";
+@import "../bulma/sass/helpers/_all.sass";
