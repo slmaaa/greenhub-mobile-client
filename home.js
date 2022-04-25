@@ -21,7 +21,7 @@ export const Home = () => {
         const USER_PROFILE_URL =
             "https://greenhub.slmaaa.work/backend/user_profile";
         fetch(USER_URL, {
-                method: "POST",
+                method: "GET",
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
