@@ -20,7 +20,7 @@ export const Home = () => {
     const userRef = useRef(null);
 
     useEffect(() => {
-        const user = sessionStorage.getItem("user");
+        let user = sessionStorage.getItem("user");
         if (user !== null) {
             userRef.current = JSON.parse(user);
             setDisplayedBalance(userRef.current.balance);
