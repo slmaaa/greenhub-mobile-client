@@ -51,7 +51,7 @@ export const Home = () => {
     };
 
     useEffect(() => {
-        fetchUserInfo.then(() => {
+        fetchUserInfo().then(() => {
             setIsLoading(false);
         });
     }, []);
