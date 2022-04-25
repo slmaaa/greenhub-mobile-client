@@ -21,15 +21,16 @@ export const Home = () => {
 
     useEffect(() => {
         let user = sessionStorage.getItem("user");
+        console.log(user);
         if (user !== null) {
-            userRef.current = JSON.parse(user);
+            userRef.current = user;
             setDisplayedBalance(userRef.current.balance);
             setDisplayedGCash(userRef.current.g_cash);
             setIsLoading(false);
         } else {
             fetchUserInfo().then(() => {
                 user = sessionStorage.getItem("user");
-                userRef.current = JSON.parse(user);
+                userRef.current = user;
                 setDisplayedBalance(userRef.current.balance);
                 setDisplayedGCash(userRef.current.g_cash);
                 setIsLoading(false);
