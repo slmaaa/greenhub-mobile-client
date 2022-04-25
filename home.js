@@ -24,6 +24,7 @@ export const Home = () => {
             userRef.curent = user;
             setDisplayedBalance(user.balance);
             setDisplayedGCash(user.g_cash);
+            setIsLoading(false);
         });
     }, []);
 
