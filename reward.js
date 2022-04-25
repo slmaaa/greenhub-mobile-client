@@ -53,7 +53,7 @@ const Reward = () => {
                 });
         }, []);
 
-        return isLoading ?
+        return isLoading > 0 ?
             html `` :
             html `
         <div class="hero is-flex is-flex-direction-column full-height">
