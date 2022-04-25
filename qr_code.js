@@ -213,7 +213,7 @@ export const QR_Code = () => {
           </span>
         </button>
       </div>
-      <${NavBar} setCurrentPage=${setCurrentPage} currentPage=${currentPage} />
+      <${NavBar} />
     </div>
   `;
 };
