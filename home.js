@@ -12,9 +12,48 @@ export const Home = () => {
     const [topPercent, setTopPercent] = useState(10);
     const [displayedBalance, setDisplayedBalance] = useState(0);
     const [displayedGCash, setDisplayedGCash] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const userRef = useRef(null);
+
+    const fetchUserInfo = async() => {
+        const USER_URL = "https://greenhub.slmaaa.work/backend/dj-rest-auth/user";
+        const USER_PROFILE_URL =
+            "https://greenhub.slmaaa.work/backend/user_profile";
+        fetch(USER_URL, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(request),
+                credentials: "include",
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                const email = data["email"];
+                fetch(USER_PROFILE_URL, {
+                        method: "GET",
+                        credentials: "include",
+                        body: JSON.stringify({ email: email }),
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+                        userRef.current = data;
+                    });
+            });
+    };
 
     useEffect(() => {
-        console.log(user);
+        fetchUserInfo.then(() => {
+            setIsLoading(false);
+        });
     }, []);
 
     const generateTask = (description, reward, finishedCount, totalCount) => {

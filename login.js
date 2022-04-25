@@ -12,10 +12,7 @@ export const Login = ({ setCurrentPage }) => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [isLogined, setIsLogined] = useState(false);
-    useEffect(() => {
-        setIsLoading(false);
-        console.log(isLogined);
-    }, []);
+    useEffect(() => {}, []);
 
     const handleLogin = () => {
         fetch(LOGIN_URL, {
