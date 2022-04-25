@@ -12,7 +12,7 @@ const REWARD_DB_URL = "https://greenhub.slmaaa.work/backend/reward/";
 
 const Reward = () => {
         const [searchInput, setSearchInput] = useState("");
-        const [isLoading, setIsLoading] = useState(true);
+        const [isLoading, setIsLoading] = useState(2);
         const [isInputSearchFocused, setIsInputSearchFocused] = useState(false);
         const resultRef = useRef(null);
         const [displayedGCash, setDisplayedGCash] = useState();
@@ -37,23 +37,20 @@ const Reward = () => {
         };
 
         useEffect(() => {
+            fetchUserInfo.then((user) => {
+                userRef.curent = user;
+                setDisplayedGCash(user.g_cash);
+                setIsLoading(isLoading - 1);
+            });
             getData(REWARD_DB_URL)
                 .then((data) => {
                     console.log(data);
                     resultRef.current = data.results;
-                    setIsLoading(false);
+                    setIsLoading(isLoading - 1);
                 })
                 .catch((err) => {
                     console.log(err);
                 });
-        }, []);
-
-        useEffect(() => {
-            fetchUserInfo.then((user) => {
-                userRef.curent = user;
-                setDisplayedGCash(user.g_cash);
-                setIsLoading(false);
-            });
         }, []);
 
         return isLoading ?
