@@ -43,7 +43,7 @@ export const NavBar = () => {
         </div>
       </button>
       <button
-        class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("/rewards")}"
+        class="${NAVBAR_BUTTON_PROP} ${setTabActiveness("/reward")}"
         onclick=${() => {
           route("/reward");
         }}
