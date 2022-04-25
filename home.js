@@ -21,7 +21,7 @@ export const Home = () => {
 
     useEffect(() => {
         let user = sessionStorage.getItem("user");
-        console.log(user);
+        console.log(user[0]);
         if (user !== null) {
             userRef.current = user;
             setDisplayedBalance(userRef.current.balance);
