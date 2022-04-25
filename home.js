@@ -38,15 +38,19 @@ export const Home = () => {
             .then((data) => {
                 console.log(data);
                 const email = data["email"];
-                fetch(USER_PROFILE_URL, {
-                        method: "GET",
-                        credentials: "include",
-                        body: JSON.stringify({ email: email }),
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json",
-                        },
-                    })
+                fetch(
+                        USER_PROFILE_URL +
+                        new URLSearchParams({
+                            email: email,
+                        }), {
+                            method: "GET",
+                            credentials: "include",
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
                     .then((response) => response.json())
                     .then((data) => {
                         console.log(data);
