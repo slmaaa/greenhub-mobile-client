@@ -28,7 +28,13 @@ export const Home = () => {
                 },
                 credentials: "include",
             })
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Failed to fetch user info");
+                }
+            })
             .then((data) => {
                 console.log(data);
                 const email = data["email"];
