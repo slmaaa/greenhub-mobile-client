@@ -13,6 +13,7 @@ import Search from "./search.js";
 import QR_Code from "./qr_code.js";
 import Reward from "./reward.js";
 import Register from "./register.js";
+import { fetchUserInfo } from "./fetch.js";
 
 const REFRESH_URL =
     "https://greenhub.slmaaa.work/backend/dj-rest-auth/token/refresh/";
@@ -20,20 +21,24 @@ const REFRESH_URL =
 const Main = () => {
     useEffect(() => {
         fetch(REFRESH_URL, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            credentials: "include",
-        }).then((response) => {
-            console.log(response);
-            if (!response.ok) {
-                route("/login");
-            } else {
-                route("/home");
-            }
-        });
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            })
+            .then((response) => {
+                console.log(response);
+                if (!response.ok) {
+                    route("/login");
+                } else {
+                    route("/home");
+                }
+            })
+            .then(() => {
+                fetchUserInfo();
+            });
     }, []);
 
     return html ` 

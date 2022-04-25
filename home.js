@@ -9,6 +9,7 @@ const html = htm.bind(h);
 import Skeleton from "https://cdn.skypack.dev/preact-loading-skeleton";
 
 import NavBar from "./navigation_bar.js";
+import { fetchUserInfo } from "./fetch.js";
 
 export const Home = () => {
     const [topPercent, setTopPercent] = useState(10);
@@ -18,53 +19,21 @@ export const Home = () => {
 
     const userRef = useRef(null);
 
-    const fetchUserInfo = async() => {
-        const USER_URL = "https://greenhub.slmaaa.work/backend/dj-rest-auth/user";
-        const USER_PROFILE_URL =
-            "https://greenhub.slmaaa.work/backend/user_profile?";
-        fetch(USER_URL, {
-                method: "GET",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error("Failed to fetch user info");
-                }
-            })
-            .then((data) => {
-                console.log(data);
-                const username = data["username"];
-                fetch(
-                        USER_PROFILE_URL +
-                        new URLSearchParams({
-                            username: username,
-                        }), {
-                            method: "GET",
-                            credentials: "include",
-                            headers: {
-                                Accept: "application/json",
-                                "Content-Type": "application/json",
-                            },
-                        }
-                    )
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log(data);
-                        userRef.current = data[0];
-                    });
-            });
-    };
-
     useEffect(() => {
-        fetchUserInfo().then(() => {
+        const user = sessionStorage.getItem("user");
+        if (user !== null) {
+            userRef.current = JSON.parse(user);
+            setDisplayedBalance(userRef.current.balance);
+            setDisplayedGCash(userRef.current.g_cash);
             setIsLoading(false);
-        });
+        } else {
+            fetchUserInfo().then(() => {
+                userRef.current = JSON.parse(user);
+                setDisplayedBalance(userRef.current.balance);
+                setDisplayedGCash(userRef.current.g_cash);
+                setIsLoading(false);
+            });
+        }
     }, []);
 
     const generateTask = (description, reward, finishedCount, totalCount) => {
