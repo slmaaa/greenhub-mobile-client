@@ -37,7 +37,7 @@ export const Home = () => {
             })
             .then((data) => {
                 console.log(data);
-                const email = data["username"];
+                const username = data["username"];
                 fetch(
                         USER_PROFILE_URL +
                         new URLSearchParams({
