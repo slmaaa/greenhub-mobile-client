@@ -68,7 +68,7 @@ export const fetchUserInfo = async() => {
                 )
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data);
+                    console.log(data.results[0]);
                     return data.results[0];
                 });
         });

@@ -23,7 +23,7 @@ export const Home = () => {
         fetchUserInfo().then((user) => {
             userRef.current = user;
             setDisplayedBalance(user.balance);
-            setDisplayedGCash(userRef.g_cash);
+            setDisplayedGCash(user.g_cash);
         });
     }, []);
 
