@@ -20,9 +20,13 @@ export const Home = () => {
     const userRef = useRef(null);
 
     useEffect(() => {
-        fetchUserInfo().then((user) => {
-            console.log(user);
-        });
+        const setUserRef = async() => {
+            const user = await fetchUserInfo();
+            userRef.current = user;
+            setDisplayedBalance(user.balance);
+            setDisplayedGCash(user.g_cash);
+        };
+        setUserRef();
     }, []);
 
     const generateTask = (description, reward, finishedCount, totalCount) => {
