@@ -6,6 +6,8 @@ const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 
+import Skeleton from "https://cdn.skypack.dev/preact-loading-skeleton";
+
 import NavBar from "./navigation_bar.js";
 
 export const Home = () => {
@@ -54,7 +56,7 @@ export const Home = () => {
                     .then((response) => response.json())
                     .then((data) => {
                         console.log(data);
-                        userRef.current = data;
+                        userRef.current = data[0];
                     });
             });
     };
@@ -81,119 +83,135 @@ export const Home = () => {
     </div>`;
     };
 
-    return html `
-    <div class="hero is-flex is-flex-direction-column full-height">
-      <div
-        class=" pt-5 px-5 is-flex-grow-1 is-flex is-flex-direction-column is-justify-content-start"
-      >
-        <div class=" header">
-          <h1
-            class="title ml-1 is-3 has-text-primary is-primary has-text-weight-bold"
-          >
-            Greenhub
-          </h1>
-
+    return isLoading ?
+        html `<div class="hero is-flex is-flex-direction-column full-height">
+        <Skeleton count="{8}" />
+      </div>` :
+        html `
+        <div class="hero is-flex is-flex-direction-column full-height">
           <div
-            class="is-flex is-justify-content-space-between is-align-items-center"
+            class=" pt-5 px-5 is-flex-grow-1 is-flex is-flex-direction-column is-justify-content-start"
           >
-            <span class="is-size-5 has-text-weight-bold ml-2"
-              >Balance: $${displayedBalance}</span
-            >
-          </div>
-        </div>
+            <div class=" header">
+              <h1
+                class="title ml-1 is-3 has-text-primary is-primary has-text-weight-bold"
+              >
+                Greenhub
+              </h1>
 
-        <div class=" home-body overflow-y">
-          <div>
-            <div class="is-flex is-flex-direction-row overflow-x">
-              <div class="is-flex is-justify-content-center info-box-container">
-                <div class="box mt-3 has-background-primary-dark info-box">
-                  <span class="has-text-white has-text-weight-bold is-size-5"
-                    >You have saved<br /><span
-                      class="is-size-1 has-text-weight-bold is-underlined"
-                      >$200</span
-                    >
-                    <br />
-                    by using G-Cash
-                  </span>
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-center info-box-container">
-                <div class="box mt-3 has-background-info-dark info-box">
-                  <span class="has-text-white has-text-weight-bold is-size-5"
-                    >You are the top <br /><span
-                      class="is-size-1 has-text-weight-bold is-underlined"
-                      >${topPercent.toString()}%</span
-                    >
-                    <br />
-                    user in last 30 days
-                  </span>
-                </div>
-              </div>
               <div
-                class="is-flex is-justify-content-center info-box-container "
+                class="is-flex is-justify-content-space-between is-align-items-center"
               >
-                <div class="box mt-3 has-background-warning-dark info-box">
-                  <span class="has-text-white has-text-weight-bold is-size-5"
-                    >You have saved <br /><span
-                      class="is-size-1 has-text-weight-bold is-underlined"
-                      >60L</span
+                <span class="is-size-5 has-text-weight-bold ml-2"
+                  >Balance: $${displayedBalance}</span
+                >
+              </div>
+            </div>
+
+            <div class=" home-body overflow-y">
+              <div>
+                <div class="is-flex is-flex-direction-row overflow-x">
+                  <div
+                    class="is-flex is-justify-content-center info-box-container"
+                  >
+                    <div class="box mt-3 has-background-primary-dark info-box">
+                      <span
+                        class="has-text-white has-text-weight-bold is-size-5"
+                        >You have saved<br /><span
+                          class="is-size-1 has-text-weight-bold is-underlined"
+                          >$200</span
+                        >
+                        <br />
+                        by using G-Cash
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="is-flex is-justify-content-center info-box-container"
+                  >
+                    <div class="box mt-3 has-background-info-dark info-box">
+                      <span
+                        class="has-text-white has-text-weight-bold is-size-5"
+                        >You are the top <br /><span
+                          class="is-size-1 has-text-weight-bold is-underlined"
+                          >${topPercent.toString()}%</span
+                        >
+                        <br />
+                        user in last 30 days
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="is-flex is-justify-content-center info-box-container "
+                  >
+                    <div class="box mt-3 has-background-warning-dark info-box">
+                      <span
+                        class="has-text-white has-text-weight-bold is-size-5"
+                        >You have saved <br /><span
+                          class="is-size-1 has-text-weight-bold is-underlined"
+                          >60L</span
+                        >
+                        <br />
+                        space in the landfill
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 box has-background-primary-light">
+                <div class="is-flex is-justify-content-space-between">
+                  <div>
+                    <span class="is-size-6 has-text-weight-light"
+                      >You currently have</span
                     >
                     <br />
-                    space in the landfill
-                  </span>
+                    <span class="is-size-5 has-text-weight-bold"
+                      >${displayedGCash}</span
+                    >
+                    <span class="is-size-5 has-text-weight-bold"> G-Cash</span>
+                  </div>
+                  <button
+                    class="button is-size-7 is-inverted is-primary is-align-self-flex-end has-text-right"
+                    onclick=${() => {
+                      setCurrentPage("REWARD");
+                    }}
+                  >
+                    Check rewards >>
+                  </button>
+                </div>
+
+                <hr class="solid" />
+
+                <div class="is-flex is-flex-direction-column">
+                  <span class="is-size-6 has-text-weight-semibold"
+                    >G-Cash Tasks:</span
+                  >
+                  ${generateTask(
+                    "Takeaway with Greenhub 3 days in a row",
+                    50,
+                    2,
+                    3
+                  )}
+                  ${generateTask(
+                    "Takeaway with Greenhub 7 days in a row",
+                    500,
+                    3,
+                    7
+                  )}
+                  ${generateTask(
+                    "Takeaway with 3 Greenhub in one go",
+                    100,
+                    0,
+                    3
+                  )}
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="mt-5 box has-background-primary-light">
-            <div class="is-flex is-justify-content-space-between">
-              <div>
-                <span class="is-size-6 has-text-weight-light"
-                  >You currently have</span
-                >
-                <br />
-                <span class="is-size-5 has-text-weight-bold"
-                  >${displayedGCash}</span
-                >
-                <span class="is-size-5 has-text-weight-bold"> G-Cash</span>
-              </div>
-              <button
-                class="button is-size-7 is-inverted is-primary is-align-self-flex-end has-text-right"
-                onclick=${() => {
-                  setCurrentPage("REWARD");
-                }}
-              >
-                Check rewards >>
-              </button>
-            </div>
-
-            <hr class="solid" />
-
-            <div class="is-flex is-flex-direction-column">
-              <span class="is-size-6 has-text-weight-semibold"
-                >G-Cash Tasks:</span
-              >
-              ${generateTask(
-                "Takeaway with Greenhub 3 days in a row",
-                50,
-                2,
-                3
-              )}
-              ${generateTask(
-                "Takeaway with Greenhub 7 days in a row",
-                500,
-                3,
-                7
-              )}
-              ${generateTask("Takeaway with 3 Greenhub in one go", 100, 0, 3)}
-            </div>
-          </div>
+          <${NavBar} />
         </div>
-      </div>
-      <${NavBar} />
-    </div>
-  `;
+      `;
 };
 
 export default Home;
