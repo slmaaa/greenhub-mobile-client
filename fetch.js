@@ -32,7 +32,7 @@ export async function getData(url = "") {
     });
     return response.json(); // parses JSON response into native JavaScript objects
 }
-export const fetchUserInfo = async() => {
+export const fetchUserInfo = new Promise((resolve, reject) => {
     const USER_URL = "https://greenhub.slmaaa.work/backend/dj-rest-auth/user";
     const USER_PROFILE_URL = "https://greenhub.slmaaa.work/backend/user_profile?";
     fetch(USER_URL, {
@@ -51,7 +51,6 @@ export const fetchUserInfo = async() => {
             }
         })
         .then((data) => {
-            console.log(data);
             const username = data["username"];
             fetch(
                     USER_PROFILE_URL +
@@ -69,7 +68,7 @@ export const fetchUserInfo = async() => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data.results[0]);
-                    return data.results[0];
+                    resolve(data.results[0]);
                 });
         });
-};
+});

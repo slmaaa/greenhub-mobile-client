@@ -20,11 +20,9 @@ export const Home = () => {
     const userRef = useRef(null);
 
     useEffect(() => {
-        const setUserRef = async() => {
-            const user = await fetchUserInfo();
+        fetchUserInfo.then((user) => {
             console.log(user);
-        };
-        setUserRef();
+        });
     }, []);
 
     const generateTask = (description, reward, finishedCount, totalCount) => {
