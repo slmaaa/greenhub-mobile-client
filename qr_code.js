@@ -125,7 +125,7 @@ export const QR_Code = () => {
                 }
             });
             return () => {
-                window.removeEventListener("storage");
+                window.removeEventListener("storage", null);
             };
         }, []);
 

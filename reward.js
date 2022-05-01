@@ -67,7 +67,7 @@ const Reward = () => {
                 }
             });
             return () => {
-                window.removeEventListener("storage");
+                window.removeEventListener("storage", null);
             };
         }, []);
         return isLoading > 0 ?
