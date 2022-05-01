@@ -35,7 +35,7 @@ const Main = () => {
                 route("/login");
             } else {
                 fetchUserInfo.then((user) => {
-                    Cookies.set("user", JSON.stringify(user), { expires: 1 });
+                    sessionStorage.setItem("user", JSON.stringify(user));
                     setIsLoading(false);
                     route("/home");
                 });

@@ -62,7 +62,7 @@ export const QR_Code = () => {
                         userRef.current = user;
                         setDisplayedBalance(user.balance);
                         setDisplayedGCash(user.g_cash);
-                        Cookies.set("user", JSON.stringify(user), { expires: 1 });
+                        sessionStorage.setItem("user", JSON.stringify(user));
                         resultRef.current = json;
                         setStatus("COMPLETED");
                     });
@@ -90,7 +90,7 @@ export const QR_Code = () => {
         }, [status]);
 
         useEffect(() => {
-            const user = JSON.parse(Cookies.get("user"));
+            const user = JSON.parse(sessionStorage.getItem("user"));
             if (user) {
                 userRef.current = user;
                 setDisplayedBalance(user.balance);

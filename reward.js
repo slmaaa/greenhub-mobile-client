@@ -34,13 +34,13 @@ const Reward = () => {
         };
 
         useEffect(() => {
-            const user = JSON.parse(Cookies.get("user"));
+            const user = JSON.parse(sessionStorage.getItem("user"));
             if (user) {
                 setDisplayedGCash(user.g_cash);
             } else {
                 fetchUserInfo.then((user) => {
                     setDisplayedGCash(user.g_cash);
-                    Cookies.set("user", JSON.stringify(user), { expires: 1 });
+                    sessionStorage.setItem("user", JSON.stringify(user));
                 });
             }
             getData(REWARD_DB_URL)

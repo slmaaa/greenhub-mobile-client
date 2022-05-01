@@ -16,25 +16,21 @@ export const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (Cookies.get("user")) {
-            const user = JSON.parse(Cookies.get("user"));
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        if (user) {
             console.log("1");
             setDisplayedBalance(user.balance);
             setDisplayedGCash(user.g_cash);
             setIsLoading(false);
         } else {
             console.log("2");
-            let flag = false;
-            fetchUserInfo
-                .then((user) => {
-                    setDisplayedBalance(user.balance);
-                    setDisplayedGCash(user.g_cash);
-                    setIsLoading(false);
-                    Cookies.set("user", JSON.stringify(user), { expires: 1 });
-                    console.log("3");
-                    flag = true;
-                })
-                .catch(() => {});
+            fetchUserInfo.then((user) => {
+                setDisplayedBalance(user.balance);
+                setDisplayedGCash(user.g_cash);
+                setIsLoading(false);
+                sessionStorage.setItem("user", JSON.stringify(user));
+                console.log("3");
+            });
         }
     }, []);
 
