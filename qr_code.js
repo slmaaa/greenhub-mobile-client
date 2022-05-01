@@ -44,7 +44,7 @@ export const QR_Code = () => {
                 console.log("opened");
                 console.log("Sending user request");
                 const request = {};
-                request.user_id = userRef.curent.id;
+                request.user_id = userRef.current.id;
                 console.log(request);
                 ws.current.send(JSON.stringify(request));
             };
