@@ -17,6 +17,7 @@ export const Home = () => {
 
     useEffect(() => {
         const user = JSON.parse(sessionStorage.getItem("user"));
+        console.log(user);
         if (user) {
             setDisplayedBalance(user.balance);
             setDisplayedGCash(user.g_cash);
