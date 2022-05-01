@@ -19,6 +19,7 @@ const REFRESH_URL =
     "https://greenhub.slmaaa.work/backend/dj-rest-auth/token/refresh/";
 
 const Main = () => {
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         fetch(REFRESH_URL, {
             method: "POST",
@@ -30,17 +31,21 @@ const Main = () => {
         }).then((response) => {
             console.log(response);
             if (!response.ok) {
+                setIsLoading(false);
                 route("/login");
             } else {
                 fetchUserInfo.then((user) => {
                     Cookies.set("user", JSON.stringify(user), { expires: 1 });
+                    setIsLoading(false);
                     route("/home");
                 });
             }
         });
     }, []);
 
-    return html ` 
+    return isLoading ?
+        html `<p>Loading...</p>` :
+        html ` 
     <${Router}>
         <${Login} path="/login" />
         <${Register} path="/register" />
