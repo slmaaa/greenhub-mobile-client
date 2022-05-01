@@ -59,9 +59,10 @@ export const QR_Code = () => {
                 } else if (json.response_type === "COMPLETED") {
                     fetchUserInfo.then((user) => {
                         console.log(user);
-                        userRef.curent = user;
+                        userRef.current = user;
                         setDisplayedBalance(user.balance);
                         setDisplayedGCash(user.g_cash);
+                        sessionStorage.setItem("user", JSON.stringify(user));
                         resultRef.current = json;
                         setStatus("COMPLETED");
                     });
@@ -89,12 +90,27 @@ export const QR_Code = () => {
         }, [status]);
 
         useEffect(() => {
-            fetchUserInfo.then((user) => {
-                userRef.curent = user;
-                setDisplayedBalance(user.balance);
-                setDisplayedGCash(user.g_cash);
-                setIsLoading(false);
-            });
+            const user = JSON.parse(sessionStorage.getItem("user"));
+            userRef.current = user;
+            setDisplayedBalance(user.balance);
+            setDisplayedGCash(user.g_cash);
+            setIsLoading(false);
+        }, []);
+
+        useEffect(() => {
+            function checkUserData() {
+                const item = sessionStorage.getItem("user");
+                if (item) {
+                    const user = JSON.parse(item);
+                    userRef.current = user;
+                    setDisplayedBalance(user.balance);
+                    setDisplayedGCash(user.g_cash);
+                }
+            }
+            window.addEventListener("storage", checkUserData);
+            return () => {
+                window.removeEventListener("storage", checkUserData);
+            };
         }, []);
 
         return isLoading ?

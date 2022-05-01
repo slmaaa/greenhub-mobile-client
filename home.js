@@ -17,8 +17,6 @@ export const Home = () => {
     const [displayedGCash, setDisplayedGCash] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
-    const userRef = useRef(null);
-
     useEffect(() => {
         const user = JSON.parse(sessionStorage.getItem("user"));
         if (item) {
@@ -40,7 +38,6 @@ export const Home = () => {
             const item = sessionStorage.getItem("user");
             if (item) {
                 const user = JSON.parse(item);
-                userRef.current = user;
                 setDisplayedBalance(user.balance);
                 setDisplayedGCash(user.g_cash);
             }

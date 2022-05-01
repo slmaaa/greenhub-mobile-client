@@ -16,9 +16,6 @@ const Reward = () => {
         const [isInputSearchFocused, setIsInputSearchFocused] = useState(false);
         const resultRef = useRef(null);
         const [displayedGCash, setDisplayedGCash] = useState();
-
-        const userRef = useRef(null);
-
         const generateRewardItems = (reward) => {
             return html ` <div
       class="box mt-5 has-background-primary-light is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between"
@@ -54,7 +51,6 @@ const Reward = () => {
                 const item = sessionStorage.getItem("user");
                 if (item) {
                     const user = JSON.parse(item);
-                    userRef.current = user;
                     setDisplayedGCash(user.g_cash);
                 }
             }
