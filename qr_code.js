@@ -72,7 +72,7 @@ export const QR_Code = () => {
                             resultRef.current = json;
                             setStatus("COMPLETED");
                         });
-                    }, 3000);
+                    }, 5000);
                 }
             };
 
