@@ -33,6 +33,7 @@ export const Login = ({ setCurrentPage }) => {
                 fetchUserInfo.then((user) => {
                     sessionStorage.setItem("user", JSON.stringify(user));
                     route("/home");
+                    console.log("hihh");
                 });
             } else {
                 console.log("login failed");

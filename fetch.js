@@ -47,7 +47,7 @@ export const fetchUserInfo = new Promise((resolve, reject) => {
             if (response.ok) {
                 return response.json();
             } else {
-                throw new Error("Failed to fetch user info");
+                console.log("Failed to fetch user info");
             }
         })
         .then((data) => {
