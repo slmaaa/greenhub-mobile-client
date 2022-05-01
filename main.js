@@ -44,9 +44,7 @@ const Main = () => {
         });
     }, []);
 
-    return isLoading ?
-        html `<p>Loading...</p>` :
-        html ` 
+    return html ` 
     <${Router}>
         <${Login} path="/login" />
         <${Register} path="/register" />
