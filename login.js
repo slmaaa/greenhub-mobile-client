@@ -28,8 +28,8 @@ export const Login = ({ setCurrentPage }) => {
             credentials: "include",
         }).then((response) => {
             if (response.ok) {
-                response.json().then((data) => {
-                    sessionStorage.setItem("user", data["user"]);
+                fetchUserInfo.then((user) => {
+                    sessionStorage.setItem("user", JSON.stringify(user));
                     route("/home");
                 });
             } else {
