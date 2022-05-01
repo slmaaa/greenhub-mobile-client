@@ -54,6 +54,22 @@ const Reward = () => {
                 });
         }, []);
 
+        useEffect(() => {
+            window.addEventListener("storage", () => {
+                const user = JSON.parse(sessionStorage.getItem("user"));
+                if (user) {
+                    setDisplayedGCash(user.g_cash);
+                } else {
+                    fetchUserInfo.then((user) => {
+                        setDisplayedGCash(user.g_cash);
+                        sessionStorage.setItem("user", JSON.stringify(user));
+                    });
+                }
+            });
+            return () => {
+                window.removeEventListener("storage");
+            };
+        }, []);
         return isLoading > 0 ?
             html `` :
             html `

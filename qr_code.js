@@ -96,7 +96,37 @@ export const QR_Code = () => {
                 setDisplayedBalance(user.balance);
                 setDisplayedGCash(user.g_cash);
                 setIsLoading(false);
+            } else {
+                fetchUserInfo.then((user) => {
+                    userRef.current = user;
+                    setDisplayedBalance(user.balance);
+                    setDisplayedGCash(user.g_cash);
+                    sessionStorage.setItem("user", JSON.stringify(user));
+                    setIsLoading(false);
+                });
             }
+        }, []);
+        useEffect(() => {
+            window.addEventListener("storage", () => {
+                const user = JSON.parse(sessionStorage.getItem("user"));
+                if (user) {
+                    userRef.current = user;
+                    setDisplayedBalance(user.balance);
+                    setDisplayedGCash(user.g_cash);
+                    setIsLoading(false);
+                } else {
+                    fetchUserInfo.then((user) => {
+                        userRef.current = user;
+                        setDisplayedBalance(user.balance);
+                        setDisplayedGCash(user.g_cash);
+                        sessionStorage.setItem("user", JSON.stringify(user));
+                        setIsLoading(false);
+                    });
+                }
+            });
+            return () => {
+                window.removeEventListener("storage");
+            };
         }, []);
 
         return isLoading ?
