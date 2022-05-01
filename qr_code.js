@@ -37,6 +37,9 @@ export const QR_Code = () => {
         };
 
         useEffect(() => {
+            console.log("QR_CODE");
+        }, []);
+        useEffect(() => {
             ws.current = new WebSocket(
                 "wss://greenhub.slmaaa.work/ws/user_db/qr_request"
             );

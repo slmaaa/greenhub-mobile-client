@@ -32,6 +32,9 @@ export const Home = () => {
     }, []);
 
     useEffect(() => {
+        console.log("Home");
+    }, []);
+    useEffect(() => {
         window.addEventListener("storage", () => {
             console.log("CHANGED!!!");
             const user = JSON.parse(sessionStorage.getItem("user"));

@@ -34,6 +34,10 @@ const Reward = () => {
         };
 
         useEffect(() => {
+            console.log("Reward");
+        }, []);
+
+        useEffect(() => {
             const user = JSON.parse(sessionStorage.getItem("user"));
             if (user) {
                 setDisplayedGCash(user.g_cash);
