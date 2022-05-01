@@ -3,7 +3,7 @@ const { h, render } = preact;
 const { Router } = preactRouter;
 const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
-import { fetchUserInfo } from "./fetch";
+import { fetchUserInfo } from "./fetch.js";
 const html = htm.bind(h);
 
 const REGISTER_URL =
