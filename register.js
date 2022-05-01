@@ -33,8 +33,10 @@ const Register = () => {
             })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
-                route("/home");
+                fetchUserInfo.then((user) => {
+                    Cookies.set("user", JSON.stringify(user), { expires: 1 });
+                    route("/home");
+                });
             });
     };
 
