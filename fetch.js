@@ -66,6 +66,7 @@ export const fetchUserInfo = new Promise((resolve, reject) => {
                         resolve(data.results[0]);
                     });
             } else {
+                console.log(response);
                 console.log("Failed to fetch user info");
             }
         })
