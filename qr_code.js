@@ -66,6 +66,7 @@ export const QR_Code = () => {
                         setDisplayedBalance(user.balance);
                         setDisplayedGCash(user.g_cash);
                         sessionStorage.setItem("user", JSON.stringify(user));
+                        console.log(JSON.parse(sessionStorage.getItem("user")));
                         resultRef.current = json;
                         setStatus("COMPLETED");
                     });
