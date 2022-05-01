@@ -34,7 +34,7 @@ const Reward = () => {
         };
 
         useEffect(() => {
-            const user = JSON.parse(sessionStorage.getItem("user"));
+            const user = JSON.parse(window.sessionStorage.getItem("user"));
             setDisplayedGCash(user.g_cash);
             getData(REWARD_DB_URL)
                 .then((data) => {
@@ -48,7 +48,7 @@ const Reward = () => {
         }, []);
         useEffect(() => {
             function checkUserData() {
-                const item = sessionStorage.getItem("user");
+                const item = window.sessionStorage.getItem("user");
                 if (item) {
                     const user = JSON.parse(item);
                     setDisplayedGCash(user.g_cash);

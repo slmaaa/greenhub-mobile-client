@@ -18,8 +18,8 @@ export const Home = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        console.log(sessionStorage.getItem("user"));
-        const user = JSON.parse(sessionStorage.getItem("user"));
+        console.log(window.sessionStorage.getItem("user"));
+        const user = JSON.parse(window.sessionStorage.getItem("user"));
         if (user) {
             console.log("1");
             setDisplayedBalance(user.balance);
@@ -31,7 +31,7 @@ export const Home = () => {
                 setDisplayedBalance(user.balance);
                 setDisplayedGCash(user.g_cash);
                 setIsLoading(false);
-                sessionStorage.setItem("user", JSON.stringify(user));
+                window.sessionStorage.setItem("user", JSON.stringify(user));
                 console.log("3");
             });
         }
@@ -39,7 +39,7 @@ export const Home = () => {
 
     useEffect(() => {
         function checkUserData() {
-            const item = sessionStorage.getItem("user");
+            const item = window.sessionStorage.getItem("user");
             if (item) {
                 const user = JSON.parse(item);
                 setDisplayedBalance(user.balance);
