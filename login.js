@@ -49,16 +49,30 @@ export const Login = ({ setCurrentPage }) => {
         </div>
         <div>
           <div class="field mt-6">
+            <p>
+              Email and password are pre-entered for easy testing. Please press
+              Login to proceed.
+            </p>
             <label class="label">Email</label>
             <div class="control">
-              <input class="input" id="email-input" type="email" />
+              <input
+                class="input"
+                id="email-input"
+                type="email"
+                value="test123abc@testmail.com"
+              />
             </div>
           </div>
 
           <div class="field">
             <label class="label">Password</label>
             <div class="control">
-              <input class="input" id="password-input" type="password" />
+              <input
+                class="input"
+                id="password-input"
+                type="password"
+                value="greenhub"
+              />
             </div>
           </div>
           <button
