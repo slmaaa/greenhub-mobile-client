@@ -70,5 +70,8 @@ export const fetchUserInfo = new Promise((resolve, reject) => {
                     console.log(data.results[0]);
                     resolve(data.results[0]);
                 });
+        })
+        .catch((err) => {
+            console.log(err);
         });
 });
