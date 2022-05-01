@@ -24,13 +24,19 @@ export const Home = () => {
             setIsLoading(false);
         } else {
             console.log("2");
-            fetchUserInfo.then((user) => {
-                setDisplayedBalance(user.balance);
-                setDisplayedGCash(user.g_cash);
-                setIsLoading(false);
-                Cookies.set("user", JSON.stringify(user), { expires: 1 });
-                console.log("3");
-            });
+            let flag = false;
+            while (!flag) {
+                fetchUserInfo
+                    .then((user) => {
+                        setDisplayedBalance(user.balance);
+                        setDisplayedGCash(user.g_cash);
+                        setIsLoading(false);
+                        Cookies.set("user", JSON.stringify(user), { expires: 1 });
+                        console.log("3");
+                        flag = true;
+                    })
+                    .catch(() => {});
+            }
         }
     }, []);
 
