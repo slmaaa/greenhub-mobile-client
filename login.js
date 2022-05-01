@@ -30,10 +30,7 @@ export const Login = ({ setCurrentPage }) => {
             credentials: "include",
         }).then((response) => {
             if (response.ok) {
-                fetchUserInfo.then((user) => {
-                    sessionStorage.setItem("user", JSON.stringify(user));
-                    route("/home");
-                });
+                route("/home");
             } else {
                 console.log("login failed");
             }
@@ -68,7 +65,6 @@ export const Login = ({ setCurrentPage }) => {
             class="button is-primary is-medium is-pulled-right"
             onclick="${() => {
               handleLogin();
-              route("/home");
             }}"
           >
             Log in</button
