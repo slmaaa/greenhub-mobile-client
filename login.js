@@ -7,6 +7,8 @@ const html = htm.bind(h);
 
 const LOGIN_URL = "https://greenhub.slmaaa.work/backend/dj-rest-auth/login/";
 
+import { fetchUserInfo } from "./fetch.js";
+
 export const Login = ({ setCurrentPage }) => {
     const user = useRef(null);
 
