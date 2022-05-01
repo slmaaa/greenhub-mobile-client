@@ -33,7 +33,6 @@ export const Login = ({ setCurrentPage }) => {
                 fetchUserInfo.then((user) => {
                     sessionStorage.setItem("user", JSON.stringify(user));
                     route("/home");
-                    console.log("hihh");
                 });
             } else {
                 console.log("login failed");
@@ -67,7 +66,10 @@ export const Login = ({ setCurrentPage }) => {
           </div>
           <button
             class="button is-primary is-medium is-pulled-right"
-            onclick="${handleLogin}"
+            onclick="${() => {
+              handleLogin();
+              route("/home");
+            }}"
           >
             Log in</button
           ><br />
