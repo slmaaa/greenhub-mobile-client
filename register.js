@@ -35,7 +35,6 @@ const Register = () => {
             .then((data) => {
                 fetchUserInfo.then((user) => {
                     Cookies.set("user", JSON.stringify(user), { expires: 1 });
-                    while (Cookies.get("user") === null) {}
                     route("/home");
                 });
             });

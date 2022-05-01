@@ -31,9 +31,10 @@ export const Login = ({ setCurrentPage }) => {
         }).then((response) => {
             if (response.ok) {
                 fetchUserInfo.then((user) => {
-                    Cookies.set("user", JSON.stringify(user), { expires: 1 });
-                    while (Cookies.get("user") === null) {}
-                    route("/home");
+                    setTimeout(() => {
+                        Cookies.set("user", JSON.stringify(user), { expires: 1 });
+                        route("/home");
+                    }, 2000);
                 });
             } else {
                 console.log("login failed");
