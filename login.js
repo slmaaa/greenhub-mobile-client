@@ -30,12 +30,7 @@ export const Login = ({ setCurrentPage }) => {
             credentials: "include",
         }).then((response) => {
             if (response.ok) {
-                fetchUserInfo.then((user) => {
-                    setTimeout(() => {
-                        Cookies.set("user", JSON.stringify(user), { expires: 1 });
-                        route("/home");
-                    }, 2000);
-                });
+                route("/home");
             } else {
                 console.log("login failed");
             }
