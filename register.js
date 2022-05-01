@@ -33,7 +33,7 @@ const Register = () => {
             })
             .then((response) => response.json())
             .then((data) => {
-                route("/home");
+                window.location.href = "https://greenhub.slmaaa.work";
             });
     };
 

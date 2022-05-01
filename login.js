@@ -30,9 +30,7 @@ export const Login = ({ setCurrentPage }) => {
             credentials: "include",
         }).then((response) => {
             if (response.ok) {
-                setTimeout(() => {
-                    route("/home");
-                }, 3000);
+                window.location.href = "https://greenhub.slmaaa.work";
             } else {
                 console.log("login failed");
             }

@@ -34,7 +34,6 @@ const Main = () => {
                 setIsLoading(false);
                 route("/login");
             } else {
-                console.log("hihhi");
                 fetchUserInfo.then((user) => {
                     Cookies.set("user", JSON.stringify(user), { expires: 1 });
                     setIsLoading(false);
