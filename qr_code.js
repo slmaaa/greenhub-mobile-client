@@ -61,6 +61,7 @@ export const QR_Code = () => {
                     setStatus("READY");
                 } else if (json.response_type === "COMPLETED") {
                     setTimeout(() => {
+                        console.log("Wait done");
                         fetchUserInfo.then((user) => {
                             console.log(user);
                             userRef.current = user;
@@ -71,7 +72,7 @@ export const QR_Code = () => {
                             resultRef.current = json;
                             setStatus("COMPLETED");
                         });
-                    }, 1000);
+                    }, 3000);
                 }
             };
 
