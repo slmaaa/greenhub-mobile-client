@@ -33,7 +33,7 @@ const Main = () => {
                 route("/login");
             } else {
                 fetchUserInfo.then((user) => {
-                    window.sessionStorage.setItem("user", JSON.stringify(user));
+                    window.localStorage.setItem("user", JSON.stringify(user));
                     route("/home");
                 });
             }
