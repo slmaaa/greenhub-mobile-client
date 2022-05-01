@@ -21,10 +21,12 @@ export const Home = () => {
         console.log(sessionStorage.getItem("user"));
         const user = JSON.parse(sessionStorage.getItem("user"));
         if (user) {
+            console.log("1");
             setDisplayedBalance(user.balance);
             setDisplayedGCash(user.g_cash);
             setIsLoading(false);
         } else {
+            console.log("2");
             fetchUserInfo.then((user) => {
                 sessionStorage.setItem("user", JSON.stringify(user));
                 setDisplayedBalance(user.balance);
