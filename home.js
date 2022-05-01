@@ -16,6 +16,7 @@ export const Home = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        console.log(Cookies.get("user"));
         const user = JSON.parse(Cookies.get("user"));
         if (user) {
             console.log("1");
