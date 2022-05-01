@@ -5,6 +5,7 @@ const { Router, route } = preactRouter;
 const { useEffect, useState, useRef } = preactHooks;
 
 import htm from "https://cdn.skypack.dev/htm";
+import Cookies from "https: //cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js";
 const html = htm.bind(h);
 
 import Login from "./login.js";
@@ -33,7 +34,7 @@ const Main = () => {
                 route("/login");
             } else {
                 fetchUserInfo.then((user) => {
-                    window.sessionStorage.setItem("user", JSON.stringify(user));
+                    Cookies.set("user", JSON.stringify(user), { expires: 1 });
                     route("/home");
                 });
             }

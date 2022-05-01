@@ -5,6 +5,7 @@ const { Router, route } = preactRouter;
 const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
+import Cookies from "https: //cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js";
 
 import Skeleton from "https://cdn.skypack.dev/preact-loading-skeleton";
 
@@ -18,8 +19,7 @@ export const Home = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        console.log(window.sessionStorage.getItem("user"));
-        const user = JSON.parse(window.sessionStorage.getItem("user"));
+        const user = JSON.parse(Cookies.get("user"));
         if (user) {
             console.log("1");
             setDisplayedBalance(user.balance);
@@ -31,25 +31,10 @@ export const Home = () => {
                 setDisplayedBalance(user.balance);
                 setDisplayedGCash(user.g_cash);
                 setIsLoading(false);
-                window.sessionStorage.setItem("user", JSON.stringify(user));
+                Cookies.set("user", JSON.stringify(user), { expires: 1 });
                 console.log("3");
             });
         }
-    }, []);
-
-    useEffect(() => {
-        function checkUserData() {
-            const item = window.sessionStorage.getItem("user");
-            if (item) {
-                const user = JSON.parse(item);
-                setDisplayedBalance(user.balance);
-                setDisplayedGCash(user.g_cash);
-            }
-        }
-        window.addEventListener("storage", checkUserData);
-        return () => {
-            window.removeEventListener("storage", checkUserData);
-        };
     }, []);
 
     const generateTask = (description, reward, finishedCount, totalCount) => {

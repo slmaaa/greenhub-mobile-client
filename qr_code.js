@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "https://cdn.skypack.dev/uuid";
 import WebSocket from "https://cdn.skypack.dev/isomorphic-ws";
 import QRCode from "https://cdn.skypack.dev/qrcode";
 
+import Cookies from "https: //cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js";
 import NavBar from "./navigation_bar.js";
 import { fetchUserInfo } from "./fetch.js";
 
@@ -62,7 +63,7 @@ export const QR_Code = () => {
                         userRef.current = user;
                         setDisplayedBalance(user.balance);
                         setDisplayedGCash(user.g_cash);
-                        sessionStorage.setItem("user", JSON.stringify(user));
+                        Cookies.set("user", JSON.stringify(user), { expires: 1 });
                         resultRef.current = json;
                         setStatus("COMPLETED");
                     });
@@ -90,27 +91,13 @@ export const QR_Code = () => {
         }, [status]);
 
         useEffect(() => {
-            const user = JSON.parse(window.sessionStorage.getItem("user"));
-            userRef.current = user;
-            setDisplayedBalance(user.balance);
-            setDisplayedGCash(user.g_cash);
-            setIsLoading(false);
-        }, []);
-
-        useEffect(() => {
-            function checkUserData() {
-                const item = window.sessionStorage.getItem("user");
-                if (item) {
-                    const user = JSON.parse(item);
-                    userRef.current = user;
-                    setDisplayedBalance(user.balance);
-                    setDisplayedGCash(user.g_cash);
-                }
+            const user = JSON.parse(Cookies.get("user"));
+            if (user) {
+                userRef.current = user;
+                setDisplayedBalance(user.balance);
+                setDisplayedGCash(user.g_cash);
+                setIsLoading(false);
             }
-            window.addEventListener("storage", checkUserData);
-            return () => {
-                window.removeEventListener("storage", checkUserData);
-            };
         }, []);
 
         return isLoading ?

@@ -6,6 +6,7 @@ const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 import NavBar from "./navigation_bar.js";
+import Cookies from "https: //cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js";
 import { getData, fetchUserInfo } from "./fetch.js";
 
 const REWARD_DB_URL = "https://greenhub.slmaaa.work/backend/reward/";
@@ -34,13 +35,13 @@ const Reward = () => {
         };
 
         useEffect(() => {
-            const user = JSON.parse(sessionStorage.getItem("user"));
+            const user = JSON.parse(Cookies.get("user"));
             if (user) {
                 setDisplayedGCash(user.g_cash);
             } else {
                 fetchUserInfo.then((user) => {
                     setDisplayedGCash(user.g_cash);
-                    sessionStorage.setItem("user", JSON.stringify(user));
+                    Cookies.set("user", JSON.stringify(user), { expires: 1 });
                 });
             }
             getData(REWARD_DB_URL)
@@ -52,19 +53,6 @@ const Reward = () => {
                 .catch((err) => {
                     console.log(err);
                 });
-        }, []);
-        useEffect(() => {
-            function checkUserData() {
-                const item = sessionStorage.getItem("user");
-                if (item) {
-                    const user = JSON.parse(item);
-                    setDisplayedGCash(user.g_cash);
-                }
-            }
-            window.addEventListener("storage", checkUserData);
-            return () => {
-                window.removeEventListener("storage", checkUserData);
-            };
         }, []);
 
         return isLoading > 0 ?
