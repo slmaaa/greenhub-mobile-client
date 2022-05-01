@@ -19,12 +19,12 @@ export const Home = () => {
 
     useEffect(() => {
         const user = JSON.parse(sessionStorage.getItem("user"));
-        if (item) {
+        if (user) {
             setDisplayedBalance(user.balance);
             setDisplayedGCash(user.g_cash);
             setIsLoading(false);
         } else {
-            fetchUserInfo().then((user) => {
+            fetchUserInfo.then((user) => {
                 sessionStorage.setItem("user", JSON.stringify(user));
                 setDisplayedBalance(user.balance);
                 setDisplayedGCash(user.g_cash);
