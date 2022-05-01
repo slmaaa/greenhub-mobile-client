@@ -37,22 +37,31 @@ const Reward = () => {
         };
 
         useEffect(() => {
-            fetchUserInfo
-                .then((user) => {
-                    userRef.curent = user;
-                    setDisplayedGCash(user.g_cash);
+            const user = JSON.parse(sessionStorage.getItem("user"));
+            setDisplayedGCash(user.g_cash);
+            getData(REWARD_DB_URL)
+                .then((data) => {
+                    console.log(data);
+                    resultRef.current = data.results;
+                    setIsLoading(false);
                 })
-                .then(() => {
-                    getData(REWARD_DB_URL)
-                        .then((data) => {
-                            console.log(data);
-                            resultRef.current = data.results;
-                            setIsLoading(false);
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        });
+                .catch((err) => {
+                    console.log(err);
                 });
+        }, []);
+        useEffect(() => {
+            function checkUserData() {
+                const item = sessionStorage.getItem("user");
+                if (item) {
+                    const user = JSON.parse(item);
+                    userRef.current = user;
+                    setDisplayedGCash(user.g_cash);
+                }
+            }
+            window.addEventListener("storage", checkUserData);
+            return () => {
+                window.removeEventListener("storage", checkUserData);
+            };
         }, []);
 
         return isLoading > 0 ?

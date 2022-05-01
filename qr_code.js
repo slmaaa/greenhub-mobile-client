@@ -58,6 +58,7 @@ export const QR_Code = () => {
                     setStatus("READY");
                 } else if (json.response_type === "COMPLETED") {
                     fetchUserInfo.then((user) => {
+                        console.log(user);
                         userRef.curent = user;
                         setDisplayedBalance(user.balance);
                         setDisplayedGCash(user.g_cash);
@@ -94,7 +95,7 @@ export const QR_Code = () => {
                 setDisplayedGCash(user.g_cash);
                 setIsLoading(false);
             });
-        }, [status]);
+        }, []);
 
         return isLoading ?
             html `` :

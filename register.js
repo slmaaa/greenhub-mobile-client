@@ -3,6 +3,7 @@ const { h, render } = preact;
 const { Router } = preactRouter;
 const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
+import { fetchUserInfo } from "./fetch";
 const html = htm.bind(h);
 
 const REGISTER_URL =
@@ -17,7 +18,8 @@ const Register = () => {
         const request = {
             name: document.getElementById("name-input").value,
             email: document.getElementById("email-input").value,
-            password: document.getElementById("password-input").value,
+            password1: document.getElementById("password-input").value,
+            password2: document.getElementById("password-input").value,
         };
         console.log(request);
         fetch(REGISTER_URL, {
@@ -32,6 +34,10 @@ const Register = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
+                fetchUserInfo().then((user) => {
+                    sessionStorage.setItem("user", JSON.stringify(user));
+                    route("/home");
+                });
             });
     };
 

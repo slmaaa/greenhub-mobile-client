@@ -20,12 +20,35 @@ export const Home = () => {
     const userRef = useRef(null);
 
     useEffect(() => {
-        fetchUserInfo.then((user) => {
-            userRef.curent = user;
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        if (item) {
             setDisplayedBalance(user.balance);
             setDisplayedGCash(user.g_cash);
             setIsLoading(false);
-        });
+        } else {
+            fetchUserInfo().then((user) => {
+                sessionStorage.setItem("user", JSON.stringify(user));
+                setDisplayedBalance(user.balance);
+                setDisplayedGCash(user.g_cash);
+                setIsLoading(false);
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        function checkUserData() {
+            const item = sessionStorage.getItem("user");
+            if (item) {
+                const user = JSON.parse(item);
+                userRef.current = user;
+                setDisplayedBalance(user.balance);
+                setDisplayedGCash(user.g_cash);
+            }
+        }
+        window.addEventListener("storage", checkUserData);
+        return () => {
+            window.removeEventListener("storage", checkUserData);
+        };
     }, []);
 
     const generateTask = (description, reward, finishedCount, totalCount) => {

@@ -32,7 +32,10 @@ const Main = () => {
             if (!response.ok) {
                 route("/login");
             } else {
-                route("/home");
+                fetchUserInfo().then((user) => {
+                    sessionStorage.setItem("user", JSON.stringify(user));
+                    route("/home");
+                });
             }
         });
     }, []);
