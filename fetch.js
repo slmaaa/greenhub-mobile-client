@@ -45,32 +45,32 @@ export const fetchUserInfo = new Promise((resolve, reject) => {
         })
         .then((response) => {
             if (response.ok) {
-                const data = response.json();
-                const username = data["username"];
-                fetch(
-                        USER_PROFILE_URL +
-                        new URLSearchParams({
-                            username: username,
-                        }), {
-                            method: "GET",
-                            credentials: "include",
-                            headers: {
-                                Accept: "application/json",
-                                "Content-Type": "application/json",
-                            },
-                        }
-                    )
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log(data.results[0]);
-                        resolve(data.results[0]);
-                    });
+                return response.json();
             } else {
-                console.log(response);
                 console.log("Failed to fetch user info");
             }
         })
-        .then((data) => {})
+        .then((data) => {
+            const username = data["username"];
+            fetch(
+                    USER_PROFILE_URL +
+                    new URLSearchParams({
+                        username: username,
+                    }), {
+                        method: "GET",
+                        credentials: "include",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                    }
+                )
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data.results[0]);
+                    resolve(data.results[0]);
+                });
+        })
         .catch((err) => {
             console.log(err);
         });
