@@ -15,7 +15,7 @@ export const Home = () => {
     const [topPercent, setTopPercent] = useState(10);
     const [displayedBalance, setDisplayedBalance] = useState(0);
     const [displayedGCash, setDisplayedGCash] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         console.log(sessionStorage.getItem("user"));
