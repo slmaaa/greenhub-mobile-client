@@ -18,6 +18,7 @@ export const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        console.log(sessionStorage.getItem("user"));
         const user = JSON.parse(sessionStorage.getItem("user"));
         if (user) {
             setDisplayedBalance(user.balance);
