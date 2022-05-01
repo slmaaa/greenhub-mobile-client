@@ -47,7 +47,7 @@ export const Home = () => {
             }
         });
         return () => {
-            window.removeEventListener("storage");
+            window.removeEventListener("storage", null);
         };
     }, []);
 
