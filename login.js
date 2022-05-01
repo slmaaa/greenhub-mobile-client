@@ -30,7 +30,7 @@ export const Login = ({ setCurrentPage }) => {
             credentials: "include",
         }).then((response) => {
             if (response.ok) {
-                route("/home");
+                setTimeout('route("/home")', 3000);
             } else {
                 console.log("login failed");
             }
