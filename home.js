@@ -32,6 +32,7 @@ export const Home = () => {
                 setDisplayedGCash(user.g_cash);
                 setIsLoading(false);
                 sessionStorage.setItem("user", JSON.stringify(user));
+                console.log("3");
             });
         }
     }, []);
