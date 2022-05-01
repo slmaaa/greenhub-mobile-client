@@ -5,7 +5,6 @@ const { Router, route } = preactRouter;
 const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
-import Cookies from "https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js";
 
 import NavBar from "./navigation_bar.js";
 import { fetchUserInfo } from "./fetch.js";

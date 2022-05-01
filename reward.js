@@ -6,7 +6,6 @@ const { useEffect, useState, useRef } = preactHooks;
 import htm from "https://cdn.skypack.dev/htm";
 const html = htm.bind(h);
 import NavBar from "./navigation_bar.js";
-import Cookies from "https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js";
 import { getData, fetchUserInfo } from "./fetch.js";
 
 const REWARD_DB_URL = "https://greenhub.slmaaa.work/backend/reward/";

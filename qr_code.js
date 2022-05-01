@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from "https://cdn.skypack.dev/uuid";
 import WebSocket from "https://cdn.skypack.dev/isomorphic-ws";
 import QRCode from "https://cdn.skypack.dev/qrcode";
 
-import Cookies from "https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js";
 import NavBar from "./navigation_bar.js";
 import { fetchUserInfo } from "./fetch.js";
 
