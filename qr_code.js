@@ -60,16 +60,18 @@ export const QR_Code = () => {
                     setPid(json.pid);
                     setStatus("READY");
                 } else if (json.response_type === "COMPLETED") {
-                    fetchUserInfo.then((user) => {
-                        console.log(user);
-                        userRef.current = user;
-                        setDisplayedBalance(user.balance);
-                        setDisplayedGCash(user.g_cash);
-                        sessionStorage.setItem("user", JSON.stringify(user));
-                        console.log(JSON.parse(sessionStorage.getItem("user")));
-                        resultRef.current = json;
-                        setStatus("COMPLETED");
-                    });
+                    setTimeout(() => {
+                        fetchUserInfo.then((user) => {
+                            console.log(user);
+                            userRef.current = user;
+                            setDisplayedBalance(user.balance);
+                            setDisplayedGCash(user.g_cash);
+                            sessionStorage.setItem("user", JSON.stringify(user));
+                            console.log(JSON.parse(sessionStorage.getItem("user")));
+                            resultRef.current = json;
+                            setStatus("COMPLETED");
+                        });
+                    }, 1000);
                 }
             };
 
