@@ -69,7 +69,7 @@ export const Home = () => {
 
     return isLoading ?
         html `<div class="hero is-flex is-flex-direction-column full-height">
-        <Skeleton count="{8}" />
+        <p>Loading...</p>
       </div>` :
         html `
         <div class="hero is-flex is-flex-direction-column full-height">
